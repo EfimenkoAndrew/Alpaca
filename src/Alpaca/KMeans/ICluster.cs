@@ -4,26 +4,15 @@ namespace KMeans
 {
     public class Cluster : ICloneable
     {
-        private IItemsList _mCentroids;
-        private IItemsList _mItems;
-
         public Cluster(IItemsList cntsList, IItemsList itemsList)
         {
             Items = itemsList;
             Centroids = cntsList;
         }
 
-        public IItemsList Items
-        {
-            get => _mItems;
-            set => _mItems = value;
-        }
+        public IItemsList Items { get; set; }
 
-        public IItemsList Centroids
-        {
-            get => _mCentroids;
-            set => _mCentroids = value;
-        }
+        public IItemsList Centroids { get; set; }
 
         public object Clone()
         {

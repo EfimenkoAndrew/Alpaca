@@ -9,14 +9,14 @@ namespace KMeans
 {
     public class KMeans : IKMeans
     {
+        private readonly IItemsList _mItems;
+        private readonly IItemsList _mUsers;
         private readonly Random _rnd = new Random();
         private ClustersList _mClusters;
-        private readonly IItemsList _mItems;
         private double _mMaxVal;
 
         private double _mMinVal;
         private ClustersList _mTargetClusters;
-        private readonly IItemsList _mUsers;
 
         public KMeans()
         {

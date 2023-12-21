@@ -7,8 +7,10 @@ namespace DataSet
 {
     public class RandomDataSet
     {
-        Random rnd;
-        private int max = 0, min = 0;
+        private readonly int max;
+        private readonly int min;
+        private readonly Random rnd;
+
         public RandomDataSet(int seed, int max = 1000 * 1000, int min = -1000 * 1000)
         {
             if (seed > 0)
@@ -19,6 +21,7 @@ namespace DataSet
             this.max = max;
             this.min = min;
         }
+
         public Point[] GenerateDatasetFloat(int data_size)
         {
             if (data_size < 2)
@@ -27,14 +30,16 @@ namespace DataSet
             var arnd = new Point[data_size];
 
             float temp = 0.0f, temp1 = 0.0f;
-            for (int i = 0; i < data_size; ++i)
+            for (var i = 0; i < data_size; ++i)
             {
                 temp = (float)rnd.NextDouble() * (max - min) + min;
                 temp1 = (float)rnd.NextDouble() * (max - min) + min;
                 arnd[i] = new Point(temp, temp1);
             }
+
             return arnd;
         }
+
         public Point[] GenerateDataset(int data_size)
         {
             if (data_size < 2)
@@ -43,19 +48,19 @@ namespace DataSet
             var arnd = new Point[data_size];
 
             int temp = 0, temp1 = 0;
-            for (int i = 0; i < data_size; ++i)
+            for (var i = 0; i < data_size; ++i)
             {
                 temp = rnd.Next() * (max - min) + min;
                 temp1 = rnd.Next() * (max - min) + min;
                 arnd[i] = new Point(temp, temp1);
             }
+
             return arnd;
         }
-
     }
 
 
-    interface ITestDataSet
+    internal interface ITestDataSet
     {
         Point[] DataSet();
         int[] Centers();
@@ -71,7 +76,7 @@ namespace DataSet
 
         public Point[] DataSet()
         {
-            Point[] data = new Point[25];
+            var data = new Point[25];
             data[0] = new Point(-2.3415f, 3.6968f);
             data[1] = new Point(-1.1092f, 3.1117f);
             data[2] = new Point(-1.5669f, 1.8351f);
@@ -106,16 +111,15 @@ namespace DataSet
     {
         public static List<Point> ReadCSV(string path)
         {
-            List<Point> data = new List<Point>(20);
+            var data = new List<Point>(20);
             float x = 0, y = 0;
             using (var reader = new StreamReader(path))
             {
-
                 try
                 {
                     while (!reader.EndOfStream)
                     {
-                        string line = reader.ReadLine();
+                        var line = reader.ReadLine();
                         var col = line.Split(',');
                         x = float.Parse(col[0]);
                         y = float.Parse(col[1]);
@@ -124,28 +128,30 @@ namespace DataSet
                 }
                 catch (FormatException)
                 {
-                    throw new Exception("0x02:Invalid input, make sure that your input is of the following format\n float,float,float");
+                    throw new Exception(
+                        "0x02:Invalid input, make sure that your input is of the following format\n float,float,float");
                 }
                 catch (Exception)
                 {
                     throw new Exception("0x01:Unkown exception in csv module");
                 }
             }
+
             return data;
         }
+
         public static List<Edge> ReadSim(string path)
         {
-            List<Edge> data = new List<Edge>(10000);
+            var data = new List<Edge>(10000);
             int i, j;
             float sim = 0;
             using (var reader = new StreamReader(path))
             {
-
                 try
                 {
                     while (!reader.EndOfStream)
                     {
-                        string line = reader.ReadLine();
+                        var line = reader.ReadLine();
                         var col = line.Split(',');
                         i = int.Parse(col[0]);
                         j = int.Parse(col[1]);
@@ -155,12 +161,14 @@ namespace DataSet
                 }
                 catch (FormatException)
                 {
-                    throw new Exception("0x02:Invalid input, make sure that your input is of the following format\n int,int,float");
+                    throw new Exception(
+                        "0x02:Invalid input, make sure that your input is of the following format\n int,int,float");
                 }
                 catch (Exception)
                 {
                     throw new Exception("0x01:Unkown exception in Sim module");
                 }
+
                 return data;
             }
         }
