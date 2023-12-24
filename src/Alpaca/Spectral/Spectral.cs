@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Alpaca.Spectral
 {
     public class Spectral
     {
-        public int k;
         public double gamma;
+        public int k;
 
         public Spectral(int k, double gamma)
         {
@@ -17,10 +15,10 @@ namespace Alpaca.Spectral
 
         public int[] Cluster(double[][] X)
         {
-            double[][] A = this.MakeAffinityRBF(X);  // RBF
-            double[][] L = this.MakeLaplacian(A);    // normalized
-            double[][] E = this.MakeEmbedding(L);    // eigenvectors
-            int[] result = this.ProcessEmbedding(E); // k-means
+            var A = MakeAffinityRBF(X); // RBF
+            var L = MakeLaplacian(A); // normalized
+            var E = MakeEmbedding(L); // eigenvectors
+            var result = ProcessEmbedding(E); // k-means
 
             return result;
         }
@@ -30,30 +28,29 @@ namespace Alpaca.Spectral
         private double[][] MakeAffinityRBF(double[][] X)
         {
             // 1s on diagonal (x1 == x2), towards 0 dissimilar
-            int n = X.Length;
-            double[][] result = MatMake(n, n);
-            for (int i = 0; i < n; ++i)
+            var n = X.Length;
+            var result = MatMake(n, n);
+            for (var i = 0; i < n; ++i)
+            for (var j = i; j < n; ++j) // upper
             {
-                for (int j = i; j < n; ++j) // upper
-                {
-                    double rbf = MyRBF(X[i], X[j], this.gamma);
-                    result[i][j] = rbf;
-                    result[j][i] = rbf;
-                }
+                var rbf = MyRBF(X[i], X[j], gamma);
+                result[i][j] = rbf;
+                result[j][i] = rbf;
             }
+
             return result;
         }
 
         // ------------------------------------------------------
 
         private static double MyRBF(double[] v1, double[] v2,
-          double gamma)
+            double gamma)
         {
             // similarity. when v1 == v2, rbf = 1.0
             // less similar returns small values between 0 and 1
-            int dim = v1.Length;
-            double sum = 0.0;
-            for (int i = 0; i < dim; ++i)
+            var dim = v1.Length;
+            var sum = 0.0;
+            for (var i = 0; i < dim; ++i)
                 sum += (v1[i] - v2[i]) * (v1[i] - v2[i]);
             return Math.Exp(-gamma * sum);
         }
@@ -64,32 +61,31 @@ namespace Alpaca.Spectral
         {
             // radius neighbors connectivity
             // 1 if x1 and x2 are close; 0 if not close
-            int n = X.Length;
-            double[][] result = MatMake(n, n);
-            for (int i = 0; i < n; ++i)
+            var n = X.Length;
+            var result = MatMake(n, n);
+            for (var i = 0; i < n; ++i)
+            for (var j = i; j < n; ++j) // upper
             {
-                for (int j = i; j < n; ++j) // upper
+                var d = Distance(X[i], X[j]);
+                if (d < gamma)
                 {
-                    double d = Distance(X[i], X[j]);
-                    if (d < this.gamma)
-                    {
-                        result[i][j] = 1.0;
-                        result[j][i] = 1.0;
-                    }
+                    result[i][j] = 1.0;
+                    result[j][i] = 1.0;
                 }
             }
+
             return result;
         }
 
         // ------------------------------------------------------
 
         private static double Distance(double[] v1,
-         double[] v2)
+            double[] v2)
         {
             // helper for MakeAffinityRNC()
-            int dim = v1.Length;
-            double sum = 0.0;
-            for (int j = 0; j < dim; ++j)
+            var dim = v1.Length;
+            var sum = 0.0;
+            for (var j = 0; j < dim; ++j)
                 sum += (v1[j] - v2[j]) * (v1[j] - v2[j]);
             return Math.Sqrt(sum);
         }
@@ -102,18 +98,19 @@ namespace Alpaca.Spectral
             // clear but not very efficient to construct D
             // L = D - A
             // here A is an affinity-style adjaceny matrix
-            int n = A.Length;
+            var n = A.Length;
 
-            double[][] D = MatMake(n, n);  // degree matrix
-            for (int i = 0; i < n; ++i)
+            var D = MatMake(n, n); // degree matrix
+            for (var i = 0; i < n; ++i)
             {
-                double rowSum = 0.0;
-                for (int j = 0; j < n; ++j)
+                var rowSum = 0.0;
+                for (var j = 0; j < n; ++j)
                     rowSum += A[i][j];
                 D[i][i] = rowSum;
             }
-            double[][] result = MatDifference(D, A);  // D-A
-            return this.NormalizeLaplacian(result);
+
+            var result = MatDifference(D, A); // D-A
+            return NormalizeLaplacian(result);
 
             // more efficient, but less clear
             //int n = A.Length;
@@ -143,27 +140,27 @@ namespace Alpaca.Spectral
         private double[][] NormalizeLaplacian(double[][] L)
         {
             // scipy library csgraph._laplacian technique
-            int n = L.Length;
-            double[][] result = MatCopy(L);
-            for (int i = 0; i < n; ++i)
-                result[i][i] = 0.0;  // zap away diagonal
+            var n = L.Length;
+            var result = MatCopy(L);
+            for (var i = 0; i < n; ++i)
+                result[i][i] = 0.0; // zap away diagonal
 
             // sqrt of col sums: in-degree version
-            double[] w = new double[n];
-            for (int j = 0; j < n; ++j)
+            var w = new double[n];
+            for (var j = 0; j < n; ++j)
             {
-                double colSum = 0.0;
-                for (int i = 0; i < n; ++i)
+                var colSum = 0.0;
+                for (var i = 0; i < n; ++i)
                     colSum += Math.Abs(result[i][j]);
                 w[j] = Math.Sqrt(colSum);
             }
 
-            for (int i = 0; i < n; ++i)
-                for (int j = 0; j < n; ++j)
-                    result[i][j] /= (w[j] * w[i]);
+            for (var i = 0; i < n; ++i)
+            for (var j = 0; j < n; ++j)
+                result[i][j] /= w[j] * w[i];
 
             // restore diagonal
-            for (int i = 0; i < n; ++i)
+            for (var i = 0; i < n; ++i)
                 result[i][i] = 1.0;
 
             return result;
@@ -178,12 +175,12 @@ namespace Alpaca.Spectral
             double[] eigVals;
             double[][] eigVecs;
             EigenQR(L, out eigVals, out eigVecs); // QR algorithm
-            int[] allIndices = ArgSort(eigVals);
-            int[] indices = new int[this.k]; // small eigenvecs
-            for (int i = 0; i < this.k; ++i)
+            var allIndices = ArgSort(eigVals);
+            var indices = new int[k]; // small eigenvecs
+            for (var i = 0; i < k; ++i)
                 indices[i] = allIndices[i];
-            double[][] extracted =
-              MatExtractCols(eigVecs, indices);
+            var extracted =
+                MatExtractCols(eigVecs, indices);
             return extracted;
         }
 
@@ -192,22 +189,22 @@ namespace Alpaca.Spectral
         private int[] ProcessEmbedding(double[][] E)
         {
             // cluster a complex transformation of source data
-            KMeans km = new KMeans(E, this.k);
-            int[] clustering = km.Cluster();
+            var km = new KMeans(E, k);
+            var clustering = km.Cluster();
             return clustering;
         }
 
         // ------------------------------------------------------
 
         private static double[][] MatDifference(double[][] ma,
-          double[][] mb)
+            double[][] mb)
         {
-            int r = ma.Length;
-            int c = ma[0].Length;
-            double[][] result = MatMake(r, c);
-            for (int i = 0; i < r; ++i)
-                for (int j = 0; j < c; ++j)
-                    result[i][j] = ma[i][j] - mb[i][j];
+            var r = ma.Length;
+            var c = ma[0].Length;
+            var result = MatMake(r, c);
+            for (var i = 0; i < r; ++i)
+            for (var j = 0; j < c; ++j)
+                result[i][j] = ma[i][j] - mb[i][j];
             return result;
         }
 
@@ -215,67 +212,64 @@ namespace Alpaca.Spectral
 
         private static int[] ArgSort(double[] vec)
         {
-            int n = vec.Length;
-            int[] idxs = new int[n];
-            for (int i = 0; i < n; ++i)
+            var n = vec.Length;
+            var idxs = new int[n];
+            for (var i = 0; i < n; ++i)
                 idxs[i] = i;
-            Array.Sort(vec, idxs);  // sort idxs based on vec
+            Array.Sort(vec, idxs); // sort idxs based on vec
             return idxs;
         }
 
         // ------------------------------------------------------
 
         private static double[][] MatExtractCols(double[][] m,
-          int[] cols)
+            int[] cols)
         {
-            int r = m.Length;
-            int c = cols.Length;
-            double[][] result = MatMake(r, c);
+            var r = m.Length;
+            var c = cols.Length;
+            var result = MatMake(r, c);
 
-            for (int j = 0; j < cols.Length; ++j)
-            {
-                for (int i = 0; i < r; ++i)
-                {
-                    result[i][j] = m[i][cols[j]];
-                }
-            }
+            for (var j = 0; j < cols.Length; ++j)
+            for (var i = 0; i < r; ++i)
+                result[i][j] = m[i][cols[j]];
             return result;
         }
 
         // === Eigen functions ==================================
 
         private static void EigenQR(double[][] M,
-          out double[] eigenVals, out double[][] eigenVecs)
+            out double[] eigenVals, out double[][] eigenVecs)
         {
             // compute eigenvalues and eigenvectors same time
             // stats.stackexchange.com/questions/20643/finding-
             //   matrix-eigenvectors-using-qr-decomposition
 
-            int n = M.Length;
-            double[][] X = MatCopy(M);  // mat must be square
-            double[][] Q; double[][] R;
-            double[][] pq = MatIdentity(n);
-            int maxCt = 10000;
+            var n = M.Length;
+            var X = MatCopy(M); // mat must be square
+            double[][] Q;
+            double[][] R;
+            var pq = MatIdentity(n);
+            var maxCt = 10000;
 
-            int ct = 0;
+            var ct = 0;
             while (ct < maxCt)
             {
                 MatDecomposeQR(X, out Q, out R, false);
                 pq = MatProduct(pq, Q);
-                X = MatProduct(R, Q);  // note order
+                X = MatProduct(R, Q); // note order
                 ++ct;
 
-                if (MatIsUpperTri(X, 1.0e-8) == true)
+                if (MatIsUpperTri(X, 1.0e-8))
                     break;
             }
 
             // eigenvalues are diag elements of X
-            double[] evals = new double[n];
-            for (int i = 0; i < n; ++i)
+            var evals = new double[n];
+            for (var i = 0; i < n; ++i)
                 evals[i] = X[i][i];
 
             // eigenvectors are columns of pq
-            double[][] evecs = MatCopy(pq);
+            var evecs = MatCopy(pq);
 
             eigenVals = evals;
             eigenVecs = evecs;
@@ -284,40 +278,35 @@ namespace Alpaca.Spectral
         // ------------------------------------------------------
 
         private static bool MatIsUpperTri(double[][] mat,
-          double tol)
+            double tol)
         {
-            int n = mat.Length;
-            for (int i = 0; i < n; ++i)
-            {
-                for (int j = 0; j < i; ++j)
-                {  // check lower vals
-                    if (Math.Abs(mat[i][j]) > tol)
-                    {
-                        return false;
-                    }
-                }
-            }
+            var n = mat.Length;
+            for (var i = 0; i < n; ++i)
+            for (var j = 0; j < i; ++j)
+                // check lower vals
+                if (Math.Abs(mat[i][j]) > tol)
+                    return false;
             return true;
         }
 
         // ------------------------------------------------------
 
         public static double[][] MatProduct(double[][] matA,
-          double[][] matB)
+            double[][] matB)
         {
-            int aRows = matA.Length;
-            int aCols = matA[0].Length;
-            int bRows = matB.Length;
-            int bCols = matB[0].Length;
+            var aRows = matA.Length;
+            var aCols = matA[0].Length;
+            var bRows = matB.Length;
+            var bCols = matB[0].Length;
             if (aCols != bRows)
                 throw new Exception("Non-conformable matrices");
 
-            double[][] result = MatMake(aRows, bCols);
+            var result = MatMake(aRows, bCols);
 
-            for (int i = 0; i < aRows; ++i) // each row of A
-                for (int j = 0; j < bCols; ++j) // each col of B
-                    for (int k = 0; k < aCols; ++k)
-                        result[i][j] += matA[i][k] * matB[k][j];
+            for (var i = 0; i < aRows; ++i) // each row of A
+            for (var j = 0; j < bCols; ++j) // each col of B
+            for (var k = 0; k < aCols; ++k)
+                result[i][j] += matA[i][k] * matB[k][j];
 
             return result;
         }
@@ -325,62 +314,60 @@ namespace Alpaca.Spectral
         // === QR decomposition functions =======================
 
         public static void MatDecomposeQR(double[][] mat,
-          out double[][] q, out double[][] r,
-          bool standardize)
+            out double[][] q, out double[][] r,
+            bool standardize)
         {
             // QR decomposition, Householder algorithm.
             // assumes square matrix
 
-            int n = mat.Length;  // assumes mat is nxn
-            int nCols = mat[0].Length;
+            var n = mat.Length; // assumes mat is nxn
+            var nCols = mat[0].Length;
             if (n != nCols) Console.WriteLine("M not square ");
 
-            double[][] Q = MatIdentity(n);
-            double[][] R = MatCopy(mat);
-            for (int i = 0; i < n - 1; ++i)
+            var Q = MatIdentity(n);
+            var R = MatCopy(mat);
+            for (var i = 0; i < n - 1; ++i)
             {
-                double[][] H = MatIdentity(n);
-                double[] a = new double[n - i];
-                int k = 0;
-                for (int ii = i; ii < n; ++ii)  // last part col [i]
+                var H = MatIdentity(n);
+                var a = new double[n - i];
+                var k = 0;
+                for (var ii = i; ii < n; ++ii) // last part col [i]
                     a[k++] = R[ii][i];
 
-                double normA = VecNorm(a);
-                if (a[0] < 0.0) { normA = -normA; }
-                double[] v = new double[a.Length];
-                for (int j = 0; j < v.Length; ++j)
+                var normA = VecNorm(a);
+                if (a[0] < 0.0) normA = -normA;
+                var v = new double[a.Length];
+                for (var j = 0; j < v.Length; ++j)
                     v[j] = a[j] / (a[0] + normA);
                 v[0] = 1.0;
 
-                double[][] h = MatIdentity(a.Length);
-                double vvDot = VecDot(v, v);
-                double[][] alpha = VecToMat(v, v.Length, 1);
-                double[][] beta = VecToMat(v, 1, v.Length);
-                double[][] aMultB = MatProduct(alpha, beta);
+                var h = MatIdentity(a.Length);
+                var vvDot = VecDot(v, v);
+                var alpha = VecToMat(v, v.Length, 1);
+                var beta = VecToMat(v, 1, v.Length);
+                var aMultB = MatProduct(alpha, beta);
 
-                for (int ii = 0; ii < h.Length; ++ii)
-                    for (int jj = 0; jj < h[0].Length; ++jj)
-                        h[ii][jj] -= (2.0 / vvDot) * aMultB[ii][jj];
+                for (var ii = 0; ii < h.Length; ++ii)
+                for (var jj = 0; jj < h[0].Length; ++jj)
+                    h[ii][jj] -= 2.0 / vvDot * aMultB[ii][jj];
 
                 // copy h into lower right of H
-                int d = n - h.Length;
-                for (int ii = 0; ii < h.Length; ++ii)
-                    for (int jj = 0; jj < h[0].Length; ++jj)
-                        H[ii + d][jj + d] = h[ii][jj];
+                var d = n - h.Length;
+                for (var ii = 0; ii < h.Length; ++ii)
+                for (var jj = 0; jj < h[0].Length; ++jj)
+                    H[ii + d][jj + d] = h[ii][jj];
 
                 Q = MatProduct(Q, H);
                 R = MatProduct(H, R);
             } // i
 
-            if (standardize == true)
+            if (standardize)
             {
                 // standardize so R diagonal is all positive
-                double[][] D = MatMake(n, n);
-                for (int i = 0; i < n; ++i)
-                {
+                var D = MatMake(n, n);
+                for (var i = 0; i < n; ++i)
                     if (R[i][i] < 0.0) D[i][i] = -1.0;
                     else D[i][i] = 1.0;
-                }
                 Q = MatProduct(Q, D);
                 R = MatProduct(D, R);
             }
@@ -392,11 +379,11 @@ namespace Alpaca.Spectral
         // ------------------------------------------------------
 
         private static double VecDot(double[] v1,
-          double[] v2)
+            double[] v2)
         {
-            double result = 0.0;
-            int n = v1.Length;
-            for (int i = 0; i < n; ++i)
+            var result = 0.0;
+            var n = v1.Length;
+            for (var i = 0; i < n; ++i)
                 result += v1[i] * v2[i];
             return result;
         }
@@ -405,9 +392,9 @@ namespace Alpaca.Spectral
 
         private static double VecNorm(double[] vec)
         {
-            int n = vec.Length;
-            double sum = 0.0;
-            for (int i = 0; i < n; ++i)
+            var n = vec.Length;
+            var sum = 0.0;
+            for (var i = 0; i < n; ++i)
                 sum += vec[i] * vec[i];
             return Math.Sqrt(sum);
         }
@@ -415,13 +402,13 @@ namespace Alpaca.Spectral
         // ------------------------------------------------------
 
         private static double[][] VecToMat(double[] vec,
-          int nRows, int nCols)
+            int nRows, int nCols)
         {
-            double[][] result = MatMake(nRows, nCols);
-            int k = 0;
-            for (int i = 0; i < nRows; ++i)
-                for (int j = 0; j < nCols; ++j)
-                    result[i][j] = vec[k++];
+            var result = MatMake(nRows, nCols);
+            var k = 0;
+            for (var i = 0; i < nRows; ++i)
+            for (var j = 0; j < nCols; ++j)
+                result[i][j] = vec[k++];
             return result;
         }
 
@@ -429,8 +416,8 @@ namespace Alpaca.Spectral
 
         private static double[][] MatMake(int rows, int cols)
         {
-            double[][] result = new double[rows][];
-            for (int i = 0; i < rows; ++i)
+            var result = new double[rows][];
+            for (var i = 0; i < rows; ++i)
                 result[i] = new double[cols];
             return result;
         }
@@ -439,12 +426,12 @@ namespace Alpaca.Spectral
 
         private static double[][] MatCopy(double[][] mat)
         {
-            int r = mat.Length;
-            int c = mat[0].Length;
-            double[][] result = MatMake(r, c);
-            for (int i = 0; i < r; ++i)
-                for (int j = 0; j < c; ++j)
-                    result[i][j] = mat[i][j];
+            var r = mat.Length;
+            var c = mat[0].Length;
+            var result = MatMake(r, c);
+            for (var i = 0; i < r; ++i)
+            for (var j = 0; j < c; ++j)
+                result[i][j] = mat[i][j];
             return result;
         }
 
@@ -452,8 +439,8 @@ namespace Alpaca.Spectral
 
         private static double[][] MatIdentity(int n)
         {
-            double[][] result = MatMake(n, n);
-            for (int i = 0; i < n; ++i)
+            var result = MatMake(n, n);
+            for (var i = 0; i < n; ++i)
                 result[i][i] = 1.0;
             return result;
         }
@@ -462,61 +449,61 @@ namespace Alpaca.Spectral
 
         private class KMeans
         {
-            public double[][] data;
-            public int k;
-            public int N;
-            public int dim;
-            public int trials;  // to find best
-            public int maxIter; // inner loop
-            public Random rnd;
             public int[] clustering;
+            public readonly double[][] data;
+            public readonly int dim;
+            public readonly int k;
+            public readonly int maxIter; // inner loop
             public double[][] means;
+            public readonly int N;
+            public Random rnd;
+            public readonly int trials; // to find best
 
             // ----------------------------------------------------
 
             public KMeans(double[][] data, int k)
             {
-                this.data = data;  // by ref
+                this.data = data; // by ref
                 this.k = k;
-                this.N = data.Length;
-                this.dim = data[0].Length;
-                this.trials = N;  // for Cluster()
-                this.maxIter = N * 2;  // for ClusterOnce()
-                this.Initialize(0); // seed, means, clustering
+                N = data.Length;
+                dim = data[0].Length;
+                trials = N; // for Cluster()
+                maxIter = N * 2; // for ClusterOnce()
+                Initialize(0); // seed, means, clustering
             }
 
             // ----------------------------------------------------
 
             public void Initialize(int seed)
             {
-                this.rnd = new Random(seed);
-                this.clustering = new int[this.N];
-                this.means = new double[this.k][];
-                for (int i = 0; i < this.k; ++i)
-                    this.means[i] = new double[this.dim];
+                rnd = new Random(seed);
+                clustering = new int[N];
+                means = new double[k][];
+                for (var i = 0; i < k; ++i)
+                    means[i] = new double[dim];
                 // Random Partition (not Forgy)
-                int[] indices = new int[this.N];
-                for (int i = 0; i < this.N; ++i)
+                var indices = new int[N];
+                for (var i = 0; i < N; ++i)
                     indices[i] = i;
                 Shuffle(indices);
-                for (int i = 0; i < this.k; ++i)  // first k items
-                    this.clustering[indices[i]] = i;
-                for (int i = this.k; i < this.N; ++i)
-                    this.clustering[indices[i]] =
-                      this.rnd.Next(0, this.k); // remaining items
+                for (var i = 0; i < k; ++i) // first k items
+                    clustering[indices[i]] = i;
+                for (var i = k; i < N; ++i)
+                    clustering[indices[i]] =
+                        rnd.Next(0, k); // remaining items
 
-                this.UpdateMeans();
+                UpdateMeans();
             }
 
             // ----------------------------------------------------
 
             private void Shuffle(int[] indices)
             {
-                int n = indices.Length;
-                for (int i = 0; i < n; ++i)
+                var n = indices.Length;
+                for (var i = 0; i < n; ++i)
                 {
-                    int r = this.rnd.Next(i, n);
-                    int tmp = indices[i];
+                    var r = rnd.Next(i, n);
+                    var tmp = indices[i];
                     indices[i] = indices[r];
                     indices[r] = tmp;
                 }
@@ -525,11 +512,11 @@ namespace Alpaca.Spectral
             // ----------------------------------------------------
 
             private static double SumSquared(double[] v1,
-              double[] v2)
+                double[] v2)
             {
-                int dim = v1.Length;
-                double sum = 0.0;
-                for (int i = 0; i < dim; ++i)
+                var dim = v1.Length;
+                var sum = 0.0;
+                for (var i = 0; i < dim; ++i)
                     sum += (v1[i] - v2[i]) * (v1[i] - v2[i]);
                 return sum;
             }
@@ -537,9 +524,9 @@ namespace Alpaca.Spectral
             // ----------------------------------------------------
 
             private static double Distance(double[] item,
-              double[] mean)
+                double[] mean)
             {
-                double ss = SumSquared(item, mean);
+                var ss = SumSquared(item, mean);
                 return Math.Sqrt(ss);
             }
 
@@ -547,17 +534,16 @@ namespace Alpaca.Spectral
 
             private static int ArgMin(double[] v)
             {
-                int dim = v.Length;
-                int minIdx = 0;
-                double minVal = v[0];
-                for (int i = 0; i < v.Length; ++i)
-                {
+                var dim = v.Length;
+                var minIdx = 0;
+                var minVal = v[0];
+                for (var i = 0; i < v.Length; ++i)
                     if (v[i] < minVal)
                     {
                         minVal = v[i];
                         minIdx = i;
                     }
-                }
+
                 return minIdx;
             }
 
@@ -565,9 +551,10 @@ namespace Alpaca.Spectral
 
             private static bool AreEqual(int[] a1, int[] a2)
             {
-                int dim = a1.Length;
-                for (int i = 0; i < dim; ++i)
-                    if (a1[i] != a2[i]) return false;
+                var dim = a1.Length;
+                for (var i = 0; i < dim; ++i)
+                    if (a1[i] != a2[i])
+                        return false;
                 return true;
             }
 
@@ -575,9 +562,9 @@ namespace Alpaca.Spectral
 
             private static int[] Copy(int[] arr)
             {
-                int dim = arr.Length;
-                int[] result = new int[dim];
-                for (int i = 0; i < dim; ++i)
+                var dim = arr.Length;
+                var result = new int[dim];
+                for (var i = 0; i < dim; ++i)
                     result[i] = arr[i];
                 return result;
             }
@@ -587,44 +574,44 @@ namespace Alpaca.Spectral
             public bool UpdateMeans()
             {
                 // verify no zero-counts
-                int[] counts = new int[this.k];
-                for (int i = 0; i < this.N; ++i)
+                var counts = new int[k];
+                for (var i = 0; i < N; ++i)
                 {
-                    int cid = this.clustering[i];
+                    var cid = clustering[i];
                     ++counts[cid];
                 }
-                for (int kk = 0; kk < this.k; ++kk)
-                {
+
+                for (var kk = 0; kk < k; ++kk)
                     if (counts[kk] == 0)
                         throw
-                          new Exception("0-count in UpdateMeans()");
-                }
+                            new Exception("0-count in UpdateMeans()");
 
                 // compute proposed new means
-                for (int kk = 0; kk < this.k; ++kk)
-                    counts[kk] = 0;  // reset
-                double[][] newMeans = new double[this.k][];
-                for (int i = 0; i < this.k; ++i)
-                    newMeans[i] = new double[this.dim];
-                for (int i = 0; i < this.N; ++i)
+                for (var kk = 0; kk < k; ++kk)
+                    counts[kk] = 0; // reset
+                var newMeans = new double[k][];
+                for (var i = 0; i < k; ++i)
+                    newMeans[i] = new double[dim];
+                for (var i = 0; i < N; ++i)
                 {
-                    int cid = this.clustering[i];
+                    var cid = clustering[i];
                     ++counts[cid];
-                    for (int j = 0; j < this.dim; ++j)
-                        newMeans[cid][j] += this.data[i][j];
+                    for (var j = 0; j < dim; ++j)
+                        newMeans[cid][j] += data[i][j];
                 }
-                for (int kk = 0; kk < this.k; ++kk)
-                    if (counts[kk] == 0)
-                        return false;  // bad attempt to update
 
-                for (int kk = 0; kk < this.k; ++kk)
-                    for (int j = 0; j < this.dim; ++j)
-                        newMeans[kk][j] /= counts[kk];
+                for (var kk = 0; kk < k; ++kk)
+                    if (counts[kk] == 0)
+                        return false; // bad attempt to update
+
+                for (var kk = 0; kk < k; ++kk)
+                for (var j = 0; j < dim; ++j)
+                    newMeans[kk][j] /= counts[kk];
 
                 // copy new means
-                for (int kk = 0; kk < this.k; ++kk)
-                    for (int j = 0; j < this.dim; ++j)
-                        this.means[kk][j] = newMeans[kk][j];
+                for (var kk = 0; kk < k; ++kk)
+                for (var j = 0; j < dim; ++j)
+                    means[kk][j] = newMeans[kk][j];
 
                 return true;
             } // UpdateMeans()
@@ -634,54 +621,52 @@ namespace Alpaca.Spectral
             public bool UpdateClustering()
             {
                 // verify no zero-counts
-                int[] counts = new int[this.k];
-                for (int i = 0; i < this.N; ++i)
+                var counts = new int[k];
+                for (var i = 0; i < N; ++i)
                 {
-                    int cid = this.clustering[i];
+                    var cid = clustering[i];
                     ++counts[cid];
                 }
-                for (int kk = 0; kk < this.k; ++kk)
-                {
+
+                for (var kk = 0; kk < k; ++kk)
                     if (counts[kk] == 0)
                         throw new
-                          Exception("0-count in UpdateClustering()");
-                }
+                            Exception("0-count in UpdateClustering()");
 
                 // proposed new clustering
-                int[] newClustering = new int[this.N];
-                for (int i = 0; i < this.N; ++i)
-                    newClustering[i] = this.clustering[i];
+                var newClustering = new int[N];
+                for (var i = 0; i < N; ++i)
+                    newClustering[i] = clustering[i];
 
-                double[] distances = new double[this.k];
-                for (int i = 0; i < this.N; ++i)
+                var distances = new double[k];
+                for (var i = 0; i < N; ++i)
+                for (var kk = 0; kk < k; ++kk)
                 {
-                    for (int kk = 0; kk < this.k; ++kk)
-                    {
-                        distances[kk] =
-                          Distance(this.data[i], this.means[kk]);
-                        int newID = ArgMin(distances);
-                        newClustering[i] = newID;
-                    }
+                    distances[kk] =
+                        Distance(data[i], means[kk]);
+                    var newID = ArgMin(distances);
+                    newClustering[i] = newID;
                 }
 
-                if (AreEqual(this.clustering, newClustering) == true)
-                    return false;  // no change; short-circuit
+                if (AreEqual(clustering, newClustering))
+                    return false; // no change; short-circuit
 
                 // make sure no count went to 0
-                for (int i = 0; i < this.k; ++i)
-                    counts[i] = 0;  // reset
-                for (int i = 0; i < this.N; ++i)
+                for (var i = 0; i < k; ++i)
+                    counts[i] = 0; // reset
+                for (var i = 0; i < N; ++i)
                 {
-                    int cid = newClustering[i];
+                    var cid = newClustering[i];
                     ++counts[cid];
                 }
-                for (int kk = 0; kk < this.k; ++kk)
+
+                for (var kk = 0; kk < k; ++kk)
                     if (counts[kk] == 0)
-                        return false;  // bad update attempt
+                        return false; // bad update attempt
 
                 // no 0 counts so update
-                for (int i = 0; i < this.N; ++i)
-                    this.clustering[i] = newClustering[i];
+                for (var i = 0; i < N; ++i)
+                    clustering[i] = newClustering[i];
 
                 return true;
             } // UpdateClustering()
@@ -690,15 +675,16 @@ namespace Alpaca.Spectral
 
             public int[] ClusterOnce()
             {
-                bool ok = true;
-                int sanityCt = 1;
-                while (sanityCt <= this.maxIter)
+                var ok = true;
+                var sanityCt = 1;
+                while (sanityCt <= maxIter)
                 {
-                    if ((ok = this.UpdateClustering() == false)) break;
-                    if ((ok = this.UpdateMeans() == false)) break;
+                    if (ok = UpdateClustering() == false) break;
+                    if (ok = UpdateMeans() == false) break;
                     ++sanityCt;
                 }
-                return this.clustering;
+
+                return clustering;
             } // ClusterOnce()
 
             // ----------------------------------------------------
@@ -706,14 +692,15 @@ namespace Alpaca.Spectral
             public double WCSS()
             {
                 // within-cluster sum of squares
-                double sum = 0.0;
-                for (int i = 0; i < this.N; ++i)
+                var sum = 0.0;
+                for (var i = 0; i < N; ++i)
                 {
-                    int cid = this.clustering[i];
-                    double[] mean = this.means[cid];
-                    double ss = SumSquared(this.data[i], mean);
+                    var cid = clustering[i];
+                    var mean = means[cid];
+                    var ss = SumSquared(data[i], mean);
                     sum += ss;
                 }
+
                 return sum;
             }
 
@@ -721,26 +708,25 @@ namespace Alpaca.Spectral
 
             public int[] Cluster()
             {
-                double bestWCSS = this.WCSS();  // initial clustering
-                int[] bestClustering = Copy(this.clustering);
+                var bestWCSS = WCSS(); // initial clustering
+                var bestClustering = Copy(this.clustering);
 
-                for (int i = 0; i < this.trials; ++i)
+                for (var i = 0; i < trials; ++i)
                 {
-                    this.Initialize(i);  // new seed, means, clustering
-                    int[] clustering = this.ClusterOnce();
-                    double wcss = this.WCSS();
+                    Initialize(i); // new seed, means, clustering
+                    var clustering = ClusterOnce();
+                    var wcss = WCSS();
                     if (wcss < bestWCSS)
                     {
                         bestWCSS = wcss;
                         bestClustering = Copy(clustering);
                     }
                 }
+
                 return bestClustering;
             } // Cluster()
-
         } // class KMeans
 
         // ======================================================
-
     }
 }
