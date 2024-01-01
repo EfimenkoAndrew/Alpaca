@@ -5,7 +5,7 @@ namespace Alpaca.Indexers.Silhouette
 {
     internal class SilhouetteIndex
     {
-        public double CalculateSilhouetteScore(int[][] dataPoints, int[] clusterAssignments)
+        public double CalculateSilhouetteScore(double[][] dataPoints, int[] clusterAssignments)
         {
             double sumOfScores = 0;
 
@@ -29,7 +29,7 @@ namespace Alpaca.Indexers.Silhouette
             return sumOfScores / dataPoints.Length;
         }
 
-        private double CalculateAverageDistanceToSameCluster(int[][] dataPoints, int[] clusterAssignments, int dataPointIndex, int clusterAssignment)
+        private double CalculateAverageDistanceToSameCluster(double[][] dataPoints, int[] clusterAssignments, int dataPointIndex, int clusterAssignment)
         {
             double distanceSum = 0;
             int numDataPointsInCluster = 0;
@@ -46,9 +46,9 @@ namespace Alpaca.Indexers.Silhouette
             return distanceSum / numDataPointsInCluster;
         }
 
-        private double CalculateEuclideanDistance(int[] pointA, int[] pointB)
+        private double CalculateEuclideanDistance(double[] pointA, double[] pointB)
         {
-            int distanceSquareSum = 0;
+            var distanceSquareSum = 0d;
             for (int dimensionIndex = 0; dimensionIndex < pointA.Length; dimensionIndex++)
             {
                 distanceSquareSum += (pointA[dimensionIndex] - pointB[dimensionIndex]) * (pointA[dimensionIndex] - pointB[dimensionIndex]);

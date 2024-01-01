@@ -1,7 +1,7 @@
 ﻿var filenames = new string[2] { @"ARTICLES.TXT", @"USERS.TXT" };
 var sBanner = new string[2]
 {
-    "K-Means++ Recommender Engine v.1.2.65535 (Euclidix) by Arthur V. Ratz",
+    "K-Means",
     "=====================================================================\n"
 };
 

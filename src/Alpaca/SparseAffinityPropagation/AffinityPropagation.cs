@@ -8,18 +8,21 @@ namespace Cluster
     {
         private readonly float _damping;
         private readonly Graph _graph;
-        private readonly int _max_iteration;
+        private readonly int _maxIteration;
         private readonly int _convergence;
 
-        public AffinityPropagation(int number_of_points, float damping = 0.9f, int max_iteration = 1000,
+        public AffinityPropagation(
+            int numberOfPoints, 
+            float damping = 0.9f, 
+            int maxIteration = 1000,
             int convergence = 200)
         {
-            if (number_of_points < 1)
+            if (numberOfPoints < 1)
                 throw new ArgumentOutOfRangeException("Number of points can't be 0 or a negative value");
 
-            _graph = new Graph(number_of_points);
+            _graph = new Graph(numberOfPoints);
             _damping = damping;
-            _max_iteration = max_iteration;
+            _maxIteration = maxIteration;
             _convergence = convergence;
             Centers = new HashSet<int>();
         }
@@ -184,7 +187,7 @@ namespace Cluster
             for (var i = 0; i < _graph.VerticesCount; ++i)
                 examplar[i] = -1;
 
-            for (int i = 0, nochange = 0; i < _max_iteration && nochange < _convergence; ++i, ++nochange)
+            for (int i = 0, nochange = 0; i < _maxIteration && nochange < _convergence; ++i, ++nochange)
             {
                 __update_responsabilities();
                 __update_availabilities();
