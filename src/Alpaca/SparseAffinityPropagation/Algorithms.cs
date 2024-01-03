@@ -1,4 +1,4 @@
-﻿namespace Utility
+﻿namespace Alpaca.SparseAffinityPropagation
 {
     public static class Algorithms
     {
@@ -55,15 +55,11 @@
                 // on left side.
 
                 if (pivotIndex > k - 1)
-                {
                     right = pivotIndex - 1;
-                }
 
                 // Else k-th smallest is on right side.
                 else
-                {
                     left = pivotIndex + 1;
-                }
 
                 temp = pivotIndex;
             }

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Utility;
 
-namespace DataSet
+namespace Alpaca.SparseAffinityPropagation
 {
     public class RandomDataSet
     {

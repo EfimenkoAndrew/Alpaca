@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using Utility;
 
-namespace Cluster
+namespace Alpaca.SparseAffinityPropagation
 {
     public class AffinityPropagation
     {
+        private readonly int _convergence;
         private readonly float _damping;
         private readonly Graph _graph;
         private readonly int _maxIteration;
-        private readonly int _convergence;
 
         public AffinityPropagation(
-            int numberOfPoints, 
-            float damping = 0.9f, 
+            int numberOfPoints,
+            float damping = 0.9f,
             int maxIteration = 1000,
             int convergence = 200)
         {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace KMeans
+namespace Alpaca.KMeans
 {
     public interface IItemsList : ICloneable, IEnumerable<Item>
     {

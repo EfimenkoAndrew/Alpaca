@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace KMeans
+namespace Alpaca.KMeans
 {
     public class AttribList : ICloneable, IEnumerable<Attrib>
     {

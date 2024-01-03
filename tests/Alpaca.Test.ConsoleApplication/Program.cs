@@ -1,4 +1,6 @@
-﻿var filenames = new string[2] { @"ARTICLES.TXT", @"USERS.TXT" };
+﻿using Alpaca.KMeans;
+
+var filenames = new string[2] { @"ARTICLES.TXT", @"USERS.TXT" };
 var sBanner = new string[2]
 {
     "K-Means",
@@ -8,7 +10,7 @@ var sBanner = new string[2]
 for (var iBanner = 0; iBanner < 2; iBanner++)
     Console.WriteLine(sBanner[iBanner]);
 
-var km = new KMeans.KMeans();
+var km = new KMeans();
 
 var nItemsCount = km.LoadItemsFromFile(filenames[0]);
 var nUsersCount = km.LoadUsersFromFile(filenames[1]);

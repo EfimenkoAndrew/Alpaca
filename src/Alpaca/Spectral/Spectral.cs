@@ -449,15 +449,15 @@ namespace Alpaca.Spectral
 
         private class KMeans
         {
-            public int[] clustering;
             public readonly double[][] data;
             public readonly int dim;
             public readonly int k;
             public readonly int maxIter; // inner loop
-            public double[][] means;
             public readonly int N;
-            public Random rnd;
             public readonly int trials; // to find best
+            public int[] clustering;
+            public double[][] means;
+            public Random rnd;
 
             // ----------------------------------------------------
 

@@ -1,4 +1,4 @@
-﻿namespace KMeans
+﻿namespace Alpaca.KMeans
 {
     public interface IKMeans
     {

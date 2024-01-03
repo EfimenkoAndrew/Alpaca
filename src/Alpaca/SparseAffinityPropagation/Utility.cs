@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Utility
+namespace Alpaca.SparseAffinityPropagation
 {
     public class Point
     {

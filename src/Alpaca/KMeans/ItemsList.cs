@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace KMeans
+namespace Alpaca.KMeans
 {
     public class ItemsList : IItemsList
     {

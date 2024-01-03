@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KMeans
+namespace Alpaca.KMeans
 {
     public class Item : ICloneable
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace KMeans
+namespace Alpaca.KMeans
 {
     public class KMeans : IKMeans
     {
