@@ -21,7 +21,7 @@
 //
 
 using System.Reflection;
-using Accord.Math.Distances;
+using Alpaca.Math.Distances;
 
 namespace Alpaca.Math
 {
@@ -161,7 +161,7 @@ namespace Alpaca.Math
 #endif
                 if (methodInfo == method)
                 {
-                    var t = Type.GetType("Accord.Math.Distances." + method.Name);
+                    var t = Type.GetType("Alpaca.Math.Distances." + method.Name);
 
                     if (t == null)
                     {
@@ -181,7 +181,7 @@ namespace Alpaca.Math
         /// <summary>
         ///   Gets the Bitwise Hamming distance between two points.
         ///   Please use the <see cref="Distance.Hamming(byte[], byte[])">Distance.Hamming</see>
-        ///   method or the <see cref="Accord.Math.Distances.Hamming"/> class instead.
+        ///   method or the <see cref="Alpaca.Math.Distances.Hamming"/> class instead.
         /// </summary>
         /// 
         [Obsolete("Please use Distance.Hamming instead.")]

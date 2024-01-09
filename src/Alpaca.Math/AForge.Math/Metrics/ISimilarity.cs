@@ -9,13 +9,13 @@
 namespace Alpaca.Math.AForge.Math.Metrics
 {
     /// <summary>
-    ///   Please use Accord.Math.Distances.ISimilarity instead.
+    ///   Please use Alpaca.Math.Distances.ISimilarity instead.
     /// </summary>
-    [Obsolete("Please use Accord.Math.Distances.ISimilarity instead.")]
+    [Obsolete("Please use Alpaca.Math.Distances.ISimilarity instead.")]
     public interface ISimilarity
     {
         /// <summary>
-        ///   Please use Accord.Math.Distances.ISimilarity instead.
+        ///   Please use Alpaca.Math.Distances.ISimilarity instead.
         /// </summary>
         double GetSimilarityScore(double[] p, double[] q);
     }

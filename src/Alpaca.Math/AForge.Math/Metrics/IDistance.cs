@@ -9,13 +9,13 @@
 namespace Alpaca.Math.AForge.Math.Metrics
 {
     /// <summary>
-    ///   Please use Accord.Math.Distances.IDistance instead.
+    ///   Please use Alpaca.Math.Distances.IDistance instead.
     /// </summary>
-    [Obsolete("Please use Accord.Math.Distances.IDistance instead.")]
+    [Obsolete("Please use Alpaca.Math.Distances.IDistance instead.")]
     public interface IDistance
     {
         /// <summary>
-        ///   Please use Accord.Math.Distances.IDistance instead.
+        ///   Please use Alpaca.Math.Distances.IDistance instead.
         /// </summary>
         double GetDistance(double[] p, double[] q);
     }

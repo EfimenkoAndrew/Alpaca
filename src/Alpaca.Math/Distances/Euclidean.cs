@@ -22,7 +22,7 @@
 
 using Alpaca.Clustering.Core;
 
-namespace Accord.Math.Distances
+namespace Alpaca.Math.Distances
 {
     using System;
 

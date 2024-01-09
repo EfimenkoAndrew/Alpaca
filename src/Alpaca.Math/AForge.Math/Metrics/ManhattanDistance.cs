@@ -6,18 +6,18 @@
 // contacts@aforgenet.com
 //
 
-using Accord.Math.Distances;
+using Alpaca.Math.Distances;
 
 namespace Alpaca.Math.AForge.Math.Metrics
 {
     /// <summary>
-    ///   Please use Accord.Math.Distances.Manhattan instead.
+    ///   Please use Alpaca.Math.Distances.Manhattan instead.
     /// </summary>
-    [Obsolete("Please use Accord.Math.Distances.Manhattan instead.")]
+    [Obsolete("Please use Alpaca.Math.Distances.Manhattan instead.")]
     public sealed class ManhattanDistance : IDistance
     {
         /// <summary>
-        ///   Please use Accord.Math.Distances.Manhattan instead.
+        ///   Please use Alpaca.Math.Distances.Manhattan instead.
         /// </summary>
         public double GetDistance(double[] p, double[] q)
         {

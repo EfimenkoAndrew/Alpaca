@@ -20,7 +20,7 @@
 //    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //
 
-namespace Accord.Math.Distances
+namespace Alpaca.Math.Distances
 {
     using System;
 
@@ -28,7 +28,7 @@ namespace Accord.Math.Distances
     /// Angular distance, or the proper distance metric version of <see cref="Cosine" /> distance.
     /// </summary>
     /// 
-    /// <seealso cref="Accord.Math.Distances.Cosine"/>
+    /// <seealso cref="Alpaca.Math.Distances.Cosine"/>
     /// 
     [Serializable]
     public struct Angular : IMetric<double[]>, ISimilarity<double[]>

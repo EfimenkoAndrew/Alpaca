@@ -6,14 +6,14 @@
 // contacts@aforgenet.com
 //
 
-using Accord.Math.Distances;
+using Alpaca.Math.Distances;
 
 namespace Alpaca.Math.AForge.Math.Metrics
 {
     /// <summary>
-    /// Please use Accord.Math.Distances.Jaccard instead.
+    /// Please use Alpaca.Math.Distances.Jaccard instead.
     /// </summary>
-    [Obsolete("Please use Accord.Math.Distances.Jaccard instead.")]
+    [Obsolete("Please use Alpaca.Math.Distances.Jaccard instead.")]
     public sealed class JaccardDistance : IDistance
     {
         /// <summary>

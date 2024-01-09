@@ -21,7 +21,6 @@
 //
 
 using Alpaca.Clustering.Core.Exceptions;
-using Alpaca.Math;
 using Alpaca.Math.Core;
 
 namespace Accord.Statistics

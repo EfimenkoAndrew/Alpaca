@@ -20,7 +20,9 @@
 //    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //
 
-namespace Accord.Math.Distances
+using Accord.Math;
+
+namespace Alpaca.Math.Distances
 {
     using System;
 

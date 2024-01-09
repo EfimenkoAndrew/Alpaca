@@ -24,7 +24,6 @@ namespace Accord.Math.Optimization
 {
     using Differentiation;
     using System;
-    using Alpaca.Math;
     using Alpaca.Math.Core;
 
     /// <summary>

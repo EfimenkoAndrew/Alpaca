@@ -28,7 +28,7 @@
 
 using System.Collections;
 using Accord.Math.Decompositions;
-using Accord.Math.Distances;
+using Alpaca.Math.Distances;
 using Alpaca.Clustering.Core;
 
 namespace Alpaca.Math
@@ -50,7 +50,7 @@ namespace Alpaca.Math
         /// <returns>The Yule distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Yule"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Yule"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -73,7 +73,7 @@ namespace Alpaca.Math
         /// <returns>The Yule distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Yule"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Yule"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -99,7 +99,7 @@ namespace Alpaca.Math
         /// <returns>The Jaccard distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Jaccard"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Jaccard"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -125,7 +125,7 @@ namespace Alpaca.Math
         /// <returns>The Hellinger distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Hellinger"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Hellinger"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -151,7 +151,7 @@ namespace Alpaca.Math
         /// <returns>The Euclidean distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Euclidean"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Euclidean"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -174,7 +174,7 @@ namespace Alpaca.Math
         /// <returns>The Euclidean distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Euclidean"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Euclidean"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -199,7 +199,7 @@ namespace Alpaca.Math
         /// <returns>The Euclidean distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Euclidean"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Euclidean"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -222,7 +222,7 @@ namespace Alpaca.Math
         /// <returns>The Euclidean distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Euclidean"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Euclidean"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -245,7 +245,7 @@ namespace Alpaca.Math
         /// <returns>The Euclidean distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Euclidean"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Euclidean"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -272,7 +272,7 @@ namespace Alpaca.Math
         /// <returns>The SquareMahalanobis distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.SquareMahalanobis"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.SquareMahalanobis"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -296,7 +296,7 @@ namespace Alpaca.Math
         /// <returns>The SquareMahalanobis distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.SquareMahalanobis"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.SquareMahalanobis"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -320,7 +320,7 @@ namespace Alpaca.Math
         /// <returns>The SquareMahalanobis distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.SquareMahalanobis"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.SquareMahalanobis"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -343,7 +343,7 @@ namespace Alpaca.Math
         /// <returns>The SquareMahalanobis distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.SquareMahalanobis"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.SquareMahalanobis"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -369,7 +369,7 @@ namespace Alpaca.Math
         /// <returns>The RusselRao distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.RusselRao"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.RusselRao"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -392,7 +392,7 @@ namespace Alpaca.Math
         /// <returns>The RusselRao distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.RusselRao"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.RusselRao"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -418,7 +418,7 @@ namespace Alpaca.Math
         /// <returns>The Chebyshev distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Chebyshev"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Chebyshev"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -444,7 +444,7 @@ namespace Alpaca.Math
         /// <returns>The Dice distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Dice"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Dice"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -467,7 +467,7 @@ namespace Alpaca.Math
         /// <returns>The Dice distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Dice"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Dice"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -493,7 +493,7 @@ namespace Alpaca.Math
         /// <returns>The SokalMichener distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.SokalMichener"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.SokalMichener"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -516,7 +516,7 @@ namespace Alpaca.Math
         /// <returns>The SokalMichener distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.SokalMichener"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.SokalMichener"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -543,7 +543,7 @@ namespace Alpaca.Math
         /// <returns>The WeightedEuclidean distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.WeightedEuclidean"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.WeightedEuclidean"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -567,7 +567,7 @@ namespace Alpaca.Math
         /// <returns>The WeightedEuclidean distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.WeightedEuclidean"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.WeightedEuclidean"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -590,7 +590,7 @@ namespace Alpaca.Math
         /// <returns>The WeightedEuclidean distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.WeightedEuclidean"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.WeightedEuclidean"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -616,7 +616,7 @@ namespace Alpaca.Math
         /// <returns>The Angular distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Angular"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Angular"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -642,7 +642,7 @@ namespace Alpaca.Math
         /// <returns>The SquareEuclidean distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.SquareEuclidean"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.SquareEuclidean"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -665,7 +665,7 @@ namespace Alpaca.Math
         /// <returns>The SquareEuclidean distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.SquareEuclidean"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.SquareEuclidean"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -688,7 +688,7 @@ namespace Alpaca.Math
         /// <returns>The SquareEuclidean distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.SquareEuclidean"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.SquareEuclidean"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -713,7 +713,7 @@ namespace Alpaca.Math
         /// <returns>The SquareEuclidean distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.SquareEuclidean"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.SquareEuclidean"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -739,7 +739,7 @@ namespace Alpaca.Math
         /// <returns>The Hamming distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Hamming"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Hamming"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -762,7 +762,7 @@ namespace Alpaca.Math
         /// <returns>The Hamming distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Hamming"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Hamming"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -785,7 +785,7 @@ namespace Alpaca.Math
         /// <returns>The Hamming distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Hamming"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Hamming"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -808,7 +808,7 @@ namespace Alpaca.Math
         /// <returns>The Hamming distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Hamming"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Hamming"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -834,7 +834,7 @@ namespace Alpaca.Math
         /// <returns>The ArgMax distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.ArgMax"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.ArgMax"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -861,7 +861,7 @@ namespace Alpaca.Math
         /// <returns>The Modular distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Modular"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Modular"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -885,7 +885,7 @@ namespace Alpaca.Math
         /// <returns>The Modular distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Modular"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Modular"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -908,7 +908,7 @@ namespace Alpaca.Math
         /// <returns>The Modular distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Modular"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Modular"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -931,7 +931,7 @@ namespace Alpaca.Math
         /// <returns>The Modular distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Modular"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Modular"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -957,7 +957,7 @@ namespace Alpaca.Math
         /// <returns>The Cosine distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Cosine"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Cosine"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -984,7 +984,7 @@ namespace Alpaca.Math
         /// <returns>The Mahalanobis distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Mahalanobis"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Mahalanobis"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -1008,7 +1008,7 @@ namespace Alpaca.Math
         /// <returns>The Mahalanobis distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Mahalanobis"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Mahalanobis"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -1032,7 +1032,7 @@ namespace Alpaca.Math
         /// <returns>The Mahalanobis distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Mahalanobis"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Mahalanobis"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -1055,7 +1055,7 @@ namespace Alpaca.Math
         /// <returns>The Mahalanobis distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Mahalanobis"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Mahalanobis"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -1081,7 +1081,7 @@ namespace Alpaca.Math
         /// <returns>The BrayCurtis distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.BrayCurtis"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.BrayCurtis"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -1108,7 +1108,7 @@ namespace Alpaca.Math
         /// <returns>The Minkowski distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Minkowski"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Minkowski"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -1132,7 +1132,7 @@ namespace Alpaca.Math
         /// <returns>The Minkowski distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Minkowski"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Minkowski"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -1155,7 +1155,7 @@ namespace Alpaca.Math
         /// <returns>The Minkowski distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Minkowski"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Minkowski"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -1178,7 +1178,7 @@ namespace Alpaca.Math
         /// <returns>The Minkowski distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Minkowski"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Minkowski"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -1204,7 +1204,7 @@ namespace Alpaca.Math
         /// <returns>The Levenshtein distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Levenshtein"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Levenshtein"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -1230,7 +1230,7 @@ namespace Alpaca.Math
         /// <returns>The SokalSneath distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.SokalSneath"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.SokalSneath"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -1253,7 +1253,7 @@ namespace Alpaca.Math
         /// <returns>The SokalSneath distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.SokalSneath"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.SokalSneath"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -1279,7 +1279,7 @@ namespace Alpaca.Math
         /// <returns>The Matching distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Matching"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Matching"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -1302,7 +1302,7 @@ namespace Alpaca.Math
         /// <returns>The Matching distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Matching"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Matching"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -1328,7 +1328,7 @@ namespace Alpaca.Math
         /// <returns>The Canberra distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Canberra"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Canberra"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -1354,7 +1354,7 @@ namespace Alpaca.Math
         /// <returns>The RogersTanimoto distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.RogersTanimoto"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.RogersTanimoto"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -1377,7 +1377,7 @@ namespace Alpaca.Math
         /// <returns>The RogersTanimoto distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.RogersTanimoto"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.RogersTanimoto"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -1403,7 +1403,7 @@ namespace Alpaca.Math
         /// <returns>The Manhattan distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Manhattan"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Manhattan"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -1426,7 +1426,7 @@ namespace Alpaca.Math
         /// <returns>The Manhattan distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Manhattan"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Manhattan"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -1452,7 +1452,7 @@ namespace Alpaca.Math
         /// <returns>The Kulczynski distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Kulczynski"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Kulczynski"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -1475,7 +1475,7 @@ namespace Alpaca.Math
         /// <returns>The Kulczynski distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.Kulczynski"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.Kulczynski"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -1502,7 +1502,7 @@ namespace Alpaca.Math
         /// <returns>The WeightedSquareEuclidean distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.WeightedSquareEuclidean"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.WeightedSquareEuclidean"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -1526,7 +1526,7 @@ namespace Alpaca.Math
         /// <returns>The WeightedSquareEuclidean distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.WeightedSquareEuclidean"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.WeightedSquareEuclidean"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0
@@ -1549,7 +1549,7 @@ namespace Alpaca.Math
         /// <returns>The WeightedSquareEuclidean distance between x and y.</returns>
         /// 
         /// <example>
-        ///   For examples, please see <see cref="Accord.Math.Distances.WeightedSquareEuclidean"/> documentation page.
+        ///   For examples, please see <see cref="Alpaca.Math.Distances.WeightedSquareEuclidean"/> documentation page.
         /// </example>
         ///
 #if NET45 || NET46 || NET462 || NETSTANDARD2_0

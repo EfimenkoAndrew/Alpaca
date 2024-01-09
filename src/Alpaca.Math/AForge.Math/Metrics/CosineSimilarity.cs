@@ -6,18 +6,18 @@
 // contacts@aforgenet.com
 //
 
-using Accord.Math.Distances;
+using Alpaca.Math.Distances;
 
 namespace Alpaca.Math.AForge.Math.Metrics
 {
     /// <summary>
-    /// Please use Accord.Math.Distances.Cosine instead.
+    /// Please use Alpaca.Math.Distances.Cosine instead.
     /// </summary>
-    [Obsolete("Please use Accord.Math.Distances.Cosine instead.")]
+    [Obsolete("Please use Alpaca.Math.Distances.Cosine instead.")]
     public sealed class CosineSimilarity : ISimilarity
     {
         /// <summary>
-        /// Please use Accord.Math.Distances.Cosine instead.
+        /// Please use Alpaca.Math.Distances.Cosine instead.
         /// </summary>
         public double GetSimilarityScore(double[] p, double[] q)
         {
