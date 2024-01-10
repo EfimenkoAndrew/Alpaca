@@ -342,7 +342,7 @@ namespace Alpaca.Clustering.Core
         /// 
         /// <returns>The top (root) of the object graph.</returns>
         /// 
-        [Obsolete("Please use Accord.IO.Serializer.Load<T>() instead.")]
+        [Obsolete("Please use Alpaca.Clustering.Core.Serializer.Load<T>() instead.")]
         public static T DeserializeAnyVersion<T>(this BinaryFormatter formatter, Stream stream)
         {
             return Serializer.Load<T>(stream);

@@ -411,8 +411,7 @@ namespace Accord.Statistics.Analysis
         ///   Gets the number of observations for this matrix
         /// </summary>
         /// 
-        [Obsolete("Please use NumberOfSamples instead.")]
-        [DisplayName("Number of samples")]
+        [Obsolete("Please use NumberOfSamples instead."), DisplayName("Number of samples")]
         public int Samples
         {
             get { return NumberOfSamples; }

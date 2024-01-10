@@ -34,8 +34,7 @@ namespace Accord.Statistics.Kernels.Sparse
     ///   used in practice (Schölkopf and Smola, 2002).
     /// </remarks>
     /// 
-    [Serializable]
-    [Obsolete("Please use the Sigmoid kernel with Sparse<double> instead.")]
+    [Serializable, Obsolete("Please use the Sigmoid kernel with Sparse<double> instead.")]
     public sealed class SparseSigmoid : KernelBase, IKernel
     {
         private double gamma;

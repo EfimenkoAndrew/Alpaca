@@ -61,9 +61,8 @@ namespace Alpaca.Clustering.Core.Math
     ///   Rational number.
     /// </summary>
     /// 
-    [Serializable]
+    [Serializable, TypeConverter(typeof(RationalConverter))]
 #if !NETSTANDARD1_4
-    [TypeConverter(typeof(RationalConverter))]
 #endif
     public struct Rational : IComparable, IComparable<Rational>, IEquatable<Rational>, IFormattable
     {

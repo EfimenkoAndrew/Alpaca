@@ -20,14 +20,13 @@
 //    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //
 
+using System.Data;
+
 #if !NETSTANDARD1_4
 namespace Accord.Statistics.Filters
 {
-
-    using System;
-    using System.Data;
     using Alpaca.Math;
-    using Alpaca.Math.Core;
+    using Accord.Math;
 
     /// <summary>
     ///   Data normalization preprocessing filter.
@@ -171,7 +170,7 @@ namespace Accord.Statistics.Filters
 
             if (Active)
             {
-                double[][] newData = data.MemberwiseClone();
+                double[][] newData = (double[][])data.MemberwiseClone();
 
                 apply(newData);
 

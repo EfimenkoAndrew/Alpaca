@@ -181,8 +181,7 @@ namespace Accord.Statistics.Analysis
         ///   Obsolete. Please use <see cref="NumberOfSamples"/> instead.
         /// </summary>
         /// 
-        [DisplayName("Number of samples")]
-        [Obsolete("Please use NumberOfSamples instead.")]
+        [DisplayName("Number of samples"), Obsolete("Please use NumberOfSamples instead.")]
         public int Samples 
         {
             get { return NumberOfSamples; }
@@ -192,8 +191,7 @@ namespace Accord.Statistics.Analysis
         ///   Obsolete. Please use <see cref="NumberOfClasses"/> instead.
         /// </summary>
         /// 
-        [DisplayName("Number of classes")]
-        [Obsolete("Please use NumberOfClasses instead.")]
+        [DisplayName("Number of classes"), Obsolete("Please use NumberOfClasses instead.")]
         public int Classes 
         {
             get { return NumberOfClasses; }

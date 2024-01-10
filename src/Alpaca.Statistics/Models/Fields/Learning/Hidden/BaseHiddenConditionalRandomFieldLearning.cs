@@ -23,6 +23,7 @@
 namespace Accord.Statistics.Models.Fields.Learning
 {
     using Accord.Statistics.Models.Fields.Functions;
+    using Alpaca.Math.Distances;
     using System;
     using System.Threading;
 

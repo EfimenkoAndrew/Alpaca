@@ -485,7 +485,7 @@ namespace Accord.Statistics.Models.Fields
         /// 
         /// <param name="stream">The stream to which the random field is to be serialized.</param>
         /// 
-        [Obsolete("Please use Accord.IO.Serializer.Save() instead.")]
+        [Obsolete("Please use Alpaca.Clustering.Core.Serializer.Save() instead.")]
         public void Save(Stream stream)
         {
             Serializer.Save(this, stream);
@@ -497,7 +497,7 @@ namespace Accord.Statistics.Models.Fields
         /// 
         /// <param name="path">The stream to which the random field is to be serialized.</param>
         /// 
-        [Obsolete("Please use Accord.IO.Serializer.Save() instead.")]
+        [Obsolete("Please use Alpaca.Clustering.Core.Serializer.Save() instead.")]
         public void Save(string path)
         {
             Serializer.Save(this, path);
@@ -511,7 +511,7 @@ namespace Accord.Statistics.Models.Fields
         /// 
         /// <returns>The deserialized random field.</returns>
         /// 
-        [Obsolete("Please use Accord.IO.Serializer.Load<HiddenConditionalRandomField<T>>() instead.")]
+        [Obsolete("Please use Alpaca.Clustering.Core.Serializer.Load<HiddenConditionalRandomField<T>>() instead.")]
         public static HiddenConditionalRandomField<T> Load(Stream stream)
         {
             return Serializer.Load<HiddenConditionalRandomField<T>>(stream);
@@ -525,7 +525,7 @@ namespace Accord.Statistics.Models.Fields
         /// 
         /// <returns>The deserialized random field.</returns>
         /// 
-        [Obsolete("Please use Accord.IO.Serializer.Load<HiddenConditionalRandomField<T>>() instead.")]
+        [Obsolete("Please use Alpaca.Clustering.Core.Serializer.Load<HiddenConditionalRandomField<T>>() instead.")]
         public static HiddenConditionalRandomField<T> Load(string path)
         {
             return Serializer.Load<HiddenConditionalRandomField<T>>(path);

@@ -49,8 +49,7 @@ namespace Accord.Statistics.Kernels.Sparse
     ///    </list></para>
     /// </remarks>
     /// 
-    [Serializable]
-    [Obsolete("Please use the Gaussian kernel with Sparse<double> instead.")]
+    [Serializable, Obsolete("Please use the Gaussian kernel with Sparse<double> instead.")]
     public sealed class SparseGaussian : KernelBase, IKernel, IDistance, IReverseDistance
     {
         private double sigma;

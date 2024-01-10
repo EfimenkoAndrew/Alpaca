@@ -37,8 +37,7 @@ namespace Accord.Statistics.Models.Markov
     ///   Obsolete. Please use <see cref="HiddenMarkovModel{TDistribution, TObservation}"/> instead.
     /// </summary>
     /// 
-    [Serializable]
-    [Obsolete("Please use HiddenMarkovModel<TDistribution, TObservation> instead.")]
+    [Serializable, Obsolete("Please use HiddenMarkovModel<TDistribution, TObservation> instead.")]
     public class HiddenMarkovModel<TDistribution> : BaseHiddenMarkovModel, IHiddenMarkovModel, ICloneable
         where TDistribution : IDistribution
     {

@@ -38,8 +38,7 @@ namespace Accord.Statistics.Models.Markov
     /// <seealso cref="HiddenMarkovClassifierLearning{TDistribution, TObservation}"/>
     /// <seealso cref="HiddenMarkovClassifier"/>
     ///   
-    [Serializable]
-    [Obsolete("Please use HiddenMarkovClassifier<TDistribution, TObservation> instead.")]
+    [Serializable, Obsolete("Please use HiddenMarkovClassifier<TDistribution, TObservation> instead.")]
     public class HiddenMarkovClassifier<TDistribution> : BaseHiddenMarkovClassifier<HiddenMarkovModel<TDistribution>>,
         IEnumerable<HiddenMarkovModel<TDistribution>>, IHiddenMarkovClassifier where TDistribution : IDistribution
     {

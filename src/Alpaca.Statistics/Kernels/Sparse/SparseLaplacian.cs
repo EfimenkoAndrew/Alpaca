@@ -31,8 +31,7 @@ namespace Accord.Statistics.Kernels.Sparse
     ///   Sparse Laplacian Kernel.
     /// </summary>
     /// 
-    [Serializable]
-    [Obsolete("Please use the Laplacian kernel with Sparse<double> instead.")]
+    [Serializable, Obsolete("Please use the Laplacian kernel with Sparse<double> instead.")]
     public sealed class SparseLaplacian : KernelBase, IKernel, IDistance
     {
         private double sigma;
