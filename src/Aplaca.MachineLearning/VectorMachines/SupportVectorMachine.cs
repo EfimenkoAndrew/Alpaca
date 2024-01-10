@@ -118,7 +118,7 @@ namespace Accord.MachineLearning.VectorMachines
         public override object Clone()
         {
             var clone = new SupportVectorMachine(NumberOfInputs) { Kernel = Kernel };
-            clone.SupportVectors = (double[][])SupportVectors.MemberwiseClone();
+            clone.SupportVectors = (double[][])SupportVectors.Clone();
             clone.IsProbabilistic = IsProbabilistic;
             clone.Weights = (double[])Weights.Clone();
             clone.Threshold = Threshold;

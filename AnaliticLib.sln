@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alpaca.Math.Core", "Alpaca.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alpaca.Statistics", "src\Alpaca.Statistics\Alpaca.Statistics.csproj", "{CC74BD53-4322-4FF1-AE86-CABC4D0676CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aplaca.MachineLearning", "src\Aplaca.MachineLearning\Aplaca.MachineLearning.csproj", "{6D306104-AEA1-4388-9446-D2F319DAB30D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aplaca.MachineLearning", "src\Aplaca.MachineLearning\Aplaca.MachineLearning.csproj", "{6D306104-AEA1-4388-9446-D2F319DAB30D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvaluationsTests", "EvaluationsTests\EvaluationsTests.csproj", "{067F9869-63D7-4AC3-B47D-FD61D65F4772}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{6D306104-AEA1-4388-9446-D2F319DAB30D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D306104-AEA1-4388-9446-D2F319DAB30D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D306104-AEA1-4388-9446-D2F319DAB30D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{067F9869-63D7-4AC3-B47D-FD61D65F4772}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{067F9869-63D7-4AC3-B47D-FD61D65F4772}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{067F9869-63D7-4AC3-B47D-FD61D65F4772}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{067F9869-63D7-4AC3-B47D-FD61D65F4772}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +83,7 @@ Global
 		{7F6B1F35-29C9-4161-88B6-155701C7ED2E} = {FDDBAB09-3603-4F79-8614-38ECC994C43F}
 		{CC74BD53-4322-4FF1-AE86-CABC4D0676CB} = {FDDBAB09-3603-4F79-8614-38ECC994C43F}
 		{6D306104-AEA1-4388-9446-D2F319DAB30D} = {FDDBAB09-3603-4F79-8614-38ECC994C43F}
+		{067F9869-63D7-4AC3-B47D-FD61D65F4772} = {66D5911C-53D7-413C-9106-5CC1A7C4E149}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {64B51782-6E90-40EA-A762-D22179EB24DA}

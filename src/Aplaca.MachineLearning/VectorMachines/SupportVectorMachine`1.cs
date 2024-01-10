@@ -132,7 +132,7 @@ namespace Accord.MachineLearning.VectorMachines
         public override object Clone()
         {
             var clone = new SupportVectorMachine<TKernel>(NumberOfInputs, Kernel);
-            clone.SupportVectors = (double[][])SupportVectors.MemberwiseClone();
+            clone.SupportVectors = (double[][])SupportVectors.Clone();
             clone.Weights = (double[])Weights.Clone();
             clone.IsProbabilistic = IsProbabilistic;
             clone.Threshold = Threshold;

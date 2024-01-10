@@ -117,8 +117,8 @@ namespace Accord.Collections
         /// 
         public SPCell(double[] corner, double[] width)
         {
-            this.corner = (double[])corner.MemberwiseClone();
-            this.width = (double[])width.MemberwiseClone();
+            this.corner = (double[])corner.Clone();
+            this.width = (double[])width.Clone();
         }
 
         /// <summary>
