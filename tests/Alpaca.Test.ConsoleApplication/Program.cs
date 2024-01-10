@@ -1,34 +1,92 @@
-﻿var filenames = new string[2] { @"ARTICLES.TXT", @"USERS.TXT" };
-var sBanner = new string[2]
+﻿using Accord.MachineLearning;
+using Alpaca.Integrations;
+using CsvHelper;
+using System.Globalization;
+using Accord.Statistics.Kernels;
+using Alpaca;
+using Alpaca.Evaluation.External;
+using Alpaca.Linkage;
+using CsvParser = Alpaca.Integrations.CsvParser;
+
+Console.WriteLine("Hello");
+var path = @"C:\Work\personal\Diploma\datasets\aggregation.csv";
+using var streamReader = new StreamReader(path);
+using var csv = new CsvReader(streamReader, CultureInfo.InvariantCulture);
+csv.Read();
+csv.ReadHeader();
+
+var data = csv.GetRecords<Data>();
+var parsed = data.Select(x=> new []{x.x,x.y}).ToArray();
+
+var kmeans = new KMeans(7);
+var clusters = kmeans.Learn(parsed);
+var clustersCount = (uint)clusters.Count;
+
+foreach (var cluster in kmeans.Clusters)
 {
-    "K-Means",
-    "=====================================================================\n"
+    foreach (var points in cluster.Covariance)
+    {
+        foreach (var point in points)
+        {
+            Console.Write(@$"{point} ");
+        }
+        Console.WriteLine();
+    }
+}
+streamReader.Close();
+
+Console.WriteLine($"Loading data-points from {path}...");
+
+var parser = new CsvParser();
+var dataPoints = parser.Load(path);
+
+Console.WriteLine($"Clustering {dataPoints.Count} data-points...");
+
+var metric = new DataPoint(null, null);
+var linkages = new Dictionary<ILinkageCriterion<DataPoint>, string>
+{
+    {new AverageLinkage<DataPoint>(metric), "average"},
+    {new CompleteLinkage<DataPoint>(metric), "complete"},
+    {new SingleLinkage<DataPoint>(metric), "single"},
+    {new MinimumEnergyLinkage<DataPoint>(metric), "min-energy"},
+    {new CentroidLinkage<DataPoint>(metric, DataPoint.GetCentroid), "centroid"},
+    {new WardsMinimumVarianceLinkage<DataPoint>(metric, DataPoint.GetCentroid), "ward"}
 };
 
-for (var iBanner = 0; iBanner < 2; iBanner++)
-    Console.WriteLine(sBanner[iBanner]);
+// executes agglomerative clustering with several linkage criteria
 
-var km = new KMeans.KMeans();
+foreach (var linkage in linkages)
+    EvaluateClustering(dataPoints, linkage.Key, linkage.Value, clustersCount);
 
-var nItemsCount = km.LoadItemsFromFile(filenames[0]);
-var nUsersCount = km.LoadUsersFromFile(filenames[1]);
-
-var nInitialUsers = 0;
-int nItemsPerCluster = 0, nItemsPerClusterMax = 0;
-if (nItemsCount > 0 && nUsersCount > 0)
+Console.WriteLine("\nDone!");
+void EvaluateClustering(
+    ISet<DataPoint> dataPoints, ILinkageCriterion<DataPoint> linkage, string linkageName, uint numClusters)
 {
-    do
-    {
-        nItemsPerClusterMax = nItemsCount / nUsersCount;
-        Console.Write("Enter the number of articles per user [2-{0}]: ", nItemsPerClusterMax);
-        nItemsPerCluster = int.Parse(Console.ReadLine());
-    } while (nItemsPerCluster < 2 || nItemsPerCluster > nItemsPerClusterMax);
+    var clusteringAlg = new AgglomerativeClusteringAlgorithm<DataPoint>(linkage);
+    var clustering = clusteringAlg.GetClustering(dataPoints);
 
-    do
-    {
-        Console.Write("\nEnter the number of users (initial centroids) [1-{0}]: ", nUsersCount);
-        nInitialUsers = int.Parse(Console.ReadLine());
-    } while (nInitialUsers < 1 || nInitialUsers > nUsersCount);
+    // gets cluster set according to predefined number of clusters
+    var clusterSet = clustering.First(cs => cs.Count == numClusters);
+
+    // gets classes for each data-point (first character of the ID in the dataset)
+    var pointClasses = dataPoints.ToDictionary(dataPoint => dataPoint, dataPoint => dataPoint.ID[0]);
+
+    Console.WriteLine("=============================================");
+    Console.WriteLine($"Evaluating {linkageName} clustering using Euclidean distance...");
+
+    // evaluates the clustering according to different criteria
+    var evaluations =
+        new Dictionary<string, double>
+        {
+            {"Purity", new Purity<DataPoint, char>().Evaluate(clusterSet, pointClasses)},
+            {"NMI", new NormalizedMutualInformation<DataPoint, char>().Evaluate(clusterSet, pointClasses)},
+            {"Accuracy", new RandIndex<DataPoint, char>().Evaluate(clusterSet, pointClasses)},
+            {"Precision", new Precision<DataPoint, char>().Evaluate(clusterSet, pointClasses)},
+            {"Recall", new Recall<DataPoint, char>().Evaluate(clusterSet, pointClasses)},
+            {"F1Measure", new FMeasure<DataPoint, char>(1).Evaluate(clusterSet, pointClasses)},
+            {"F2Measure", new FMeasure<DataPoint, char>(2).Evaluate(clusterSet, pointClasses)},
+            {"F05Measure", new FMeasure<DataPoint, char>(0.5).Evaluate(clusterSet, pointClasses)}
+        };
+    foreach (var evaluation in evaluations)
+        Console.WriteLine($" - {evaluation.Key}: {evaluation.Value:0.000}");
 }
-
-km.Compute(nInitialUsers, nItemsPerCluster);
