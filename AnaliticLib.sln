@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alpaca.Math.Core", "Alpaca.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alpaca.Statistics", "src\Alpaca.Statistics\Alpaca.Statistics.csproj", "{CC74BD53-4322-4FF1-AE86-CABC4D0676CB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aplaca.MachineLearning", "src\Aplaca.MachineLearning\Aplaca.MachineLearning.csproj", "{6D306104-AEA1-4388-9446-D2F319DAB30D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alpaca.MachineLearning", "src\Aplaca.MachineLearning\Alpaca.MachineLearning.csproj", "{6D306104-AEA1-4388-9446-D2F319DAB30D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EvaluationsTests", "EvaluationsTests\EvaluationsTests.csproj", "{067F9869-63D7-4AC3-B47D-FD61D65F4772}"
 EndProject
