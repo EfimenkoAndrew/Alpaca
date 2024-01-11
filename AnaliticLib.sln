@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A83B5607-A00
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{66D5911C-53D7-413C-9106-5CC1A7C4E149}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alpaca", "src\Alpaca\Alpaca.csproj", "{0E2CEF8D-5B59-478C-9468-BD155DFEE994}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlpacaAnalitics", "src\Alpaca\AlpacaAnalitics.csproj", "{0E2CEF8D-5B59-478C-9468-BD155DFEE994}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alpaca.Test.ConsoleApplication", "tests\Alpaca.Test.ConsoleApplication\Alpaca.Test.ConsoleApplication.csproj", "{58C17FCD-B6E9-4D4B-8171-2468A58D953D}"
 EndProject
@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alpaca.Statistics", "src\Al
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aplaca.MachineLearning", "src\Aplaca.MachineLearning\Aplaca.MachineLearning.csproj", "{6D306104-AEA1-4388-9446-D2F319DAB30D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvaluationsTests", "EvaluationsTests\EvaluationsTests.csproj", "{067F9869-63D7-4AC3-B47D-FD61D65F4772}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EvaluationsTests", "EvaluationsTests\EvaluationsTests.csproj", "{067F9869-63D7-4AC3-B47D-FD61D65F4772}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
