@@ -25,6 +25,7 @@
     <ProjectReference Include="..\..\src\Alpaca.Math\Alpaca.Math.csproj" />
     <ProjectReference Include="..\..\src\Alpaca.Statistics\Alpaca.Statistics.csproj" />
     <ProjectReference Include="..\..\src\Alpaca\AlpacaAnalitics.csproj" />
+    <ProjectReference Include="..\..\src\Aplaca.MachineLearning\Alpaca.MachineLearning.csproj" />
     <ProjectReference Include="..\..\src\Aplaca.MachineLearning\Aplaca.MachineLearning.csproj" />
   </ItemGroup>
 

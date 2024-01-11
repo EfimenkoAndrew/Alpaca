@@ -8,5 +8,5 @@ using System.Runtime.InteropServices;
 [assembly: InternalsVisibleTo("Alpaca.Statistics")]
 [assembly: InternalsVisibleTo("Alpaca.Math")]
 [assembly: InternalsVisibleTo("Alpaca.Math.Core")]
-[assembly: InternalsVisibleTo("Aplaca.MachineLearning")]
+[assembly: InternalsVisibleTo("Alpaca.MachineLearning")]
 
