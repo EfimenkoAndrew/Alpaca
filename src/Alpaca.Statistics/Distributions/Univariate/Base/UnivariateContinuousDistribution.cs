@@ -33,9 +33,7 @@
 // off to force new classes to be implemented using this new way.
 
 using Alpaca.Clustering.Core.Ranges;
-# if !DEBUG
-#define COMPATIBILITY
-#endif
+
 
 namespace Accord.Statistics.Distributions.Univariate
 {
