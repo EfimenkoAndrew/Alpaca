@@ -2,11 +2,11 @@
 using Alpaca.Integrations;
 using CsvHelper;
 using System.Globalization;
-using Accord.Statistics.Kernels;
 using Alpaca;
 using Alpaca.Evaluation.External;
 using Alpaca.Linkage;
 using CsvParser = Alpaca.Integrations.CsvParser;
+using Alpaca.Clustering.Core;
 
 Console.WriteLine("Hello");
 var path = @"C:\Work\personal\Diploma\datasets\aggregation.csv";
@@ -18,21 +18,23 @@ csv.ReadHeader();
 var data = csv.GetRecords<Data>();
 var parsed = data.Select(x=> new []{x.x,x.y}).ToArray();
 
-var kmeans = new KMeans(7);
-var clusters = kmeans.Learn(parsed);
-var clustersCount = (uint)clusters.Count;
+var gaussianMixtureModel = new GaussianMixtureModel(7);
+var clustersCount = gaussianMixtureModel.Compute(parsed).Length;
 
-foreach (var cluster in kmeans.Clusters)
+var x = gaussianMixtureModel.Clusters;
+
+
+/*foreach (var cluster in x.Clusters)
 {
     foreach (var points in cluster.Covariance)
     {
         foreach (var point in points)
         {
-            Console.Write(@$"{point} ");
+            Console.Write(@$"{ point} ");
         }
         Console.WriteLine();
     }
-}
+}*/
 streamReader.Close();
 
 Console.WriteLine($"Loading data-points from {path}...");
@@ -60,7 +62,7 @@ foreach (var linkage in linkages)
 
 Console.WriteLine("\nDone!");
 void EvaluateClustering(
-    ISet<DataPoint> dataPoints, ILinkageCriterion<DataPoint> linkage, string linkageName, uint numClusters)
+    ISet<DataPoint> dataPoints, ILinkageCriterion<DataPoint> linkage, string linkageName, int numClusters)
 {
     var clusteringAlg = new AgglomerativeClusteringAlgorithm<DataPoint>(linkage);
     var clustering = clusteringAlg.GetClustering(dataPoints);
