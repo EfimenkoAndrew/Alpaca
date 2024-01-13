@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Alpaca
+namespace AlpacaAnalytics.Clustering
 {
     /// <summary>
     ///     Represents the result of evaluating some <see cref="ClusterSet{TInstance}" /> according to some criterion.

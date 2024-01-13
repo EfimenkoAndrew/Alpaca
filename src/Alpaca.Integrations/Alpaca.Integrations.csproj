@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Alpaca\AlpacaAnalitics.csproj" />
+    <ProjectReference Include="..\Alpaca\AlpacaAnalytics.csproj" />
   </ItemGroup>
 
 </Project>

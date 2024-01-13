@@ -1,6 +1,7 @@
 ﻿using System;
+using AlpacaAnalytics.Clustering;
 
-namespace Alpaca.Evaluation.Internal
+namespace AlpacaAnalytics.Evaluation.Internal
 {
     /// <summary>
     ///     Represents an interface for criteria which uses the internal information resulting from a

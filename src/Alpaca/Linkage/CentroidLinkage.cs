@@ -1,6 +1,7 @@
 ﻿using System;
+using AlpacaAnalytics.Clustering;
 
-namespace Alpaca.Linkage
+namespace AlpacaAnalytics.Linkage
 {
     /// <summary>
     ///     Implements the centroid linkage clustering method, i.e., returns the distance between the centroid for each cluster

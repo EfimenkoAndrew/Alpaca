@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
+using AlpacaAnalytics.Clustering;
 
-namespace Alpaca.Linkage
+namespace AlpacaAnalytics.Linkage
 {
     /// <summary>
     ///     Implements the unweighted pair-group average method or UPGMA, i.e., returns the mean distance between the elements
@@ -18,7 +19,6 @@ namespace Alpaca.Linkage
     /// </remarks>
     /// <typeparam name="TInstance">The type of instance considered.</typeparam>
     public class AverageLinkage<TInstance> : ILinkageCriterion<TInstance> where TInstance : IComparable<TInstance>
-
     {
         /// <summary>
         ///     Creates a new <see cref="AverageLinkage{TInstance}" /> with given dissimilarity metric.

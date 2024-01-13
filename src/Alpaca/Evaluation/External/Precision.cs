@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AlpacaAnalytics.Clustering;
 
-namespace Alpaca.Evaluation.External
+namespace AlpacaAnalytics.Evaluation.External
 {
     /// <summary>
     ///     Evaluates the given partition according to the precision criterion, given by the percentage of true positives over

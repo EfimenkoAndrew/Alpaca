@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using AlpacaAnalytics.Clustering;
 
-namespace Alpaca.Evaluation.Internal
+namespace AlpacaAnalytics.Evaluation.Internal
 {
     /// <summary>
     ///     Implements an internal evaluation method measuring the complement of the ratio of the sum of squared distances

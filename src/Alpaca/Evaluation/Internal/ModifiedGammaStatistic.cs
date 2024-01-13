@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
+using AlpacaAnalytics.Clustering;
 
-namespace Alpaca.Evaluation.Internal
+namespace AlpacaAnalytics.Evaluation.Internal
 {
     /// <summary>
     ///     Implements an internal evaluation method based on a modified/improved version of Hubert's Gamma (Γ) statistic in

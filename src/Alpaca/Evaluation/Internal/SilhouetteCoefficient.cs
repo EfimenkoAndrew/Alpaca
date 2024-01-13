@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AlpacaAnalytics.Clustering;
 
-namespace Alpaca.Evaluation.Internal
+namespace AlpacaAnalytics.Evaluation.Internal
 {
     /// <summary>
     ///     Implements an internal evaluation method that measures how similar an element is to its own cluster (cohesion)

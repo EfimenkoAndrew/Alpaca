@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Alpaca
+namespace AlpacaAnalytics.Clustering
 {
     /// <summary>
     ///     Represents a set of <see cref="Cluster{TInstance}" /> elements that were found during the execution of the

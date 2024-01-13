@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
+using AlpacaAnalytics.Clustering;
 
-namespace Alpaca.Evaluation.Internal
+namespace AlpacaAnalytics.Evaluation.Internal
 {
     /// <summary>
     ///     Implements the internal evaluation method in [1] known as the Xie-Beni (XB) index. It defines the inter-cluster

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Alpaca.Linkage;
+using AlpacaAnalytics.Linkage;
 
-namespace Alpaca
+namespace AlpacaAnalytics.Clustering
 {
     /// <summary>
     ///     Represents an interface for hierarchical agglomerative clustering algorithms.

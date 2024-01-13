@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Alpaca
+namespace AlpacaAnalytics.Clustering
 {
     /// <summary>
     ///     Represents a delegate for functions calculating the centroids of <see cref="Cluster{TInstance}" /> objects, i.e.,

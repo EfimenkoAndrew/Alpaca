@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
+using AlpacaAnalytics.Clustering;
 
-namespace Alpaca.Linkage
+namespace AlpacaAnalytics.Linkage
 {
     /// <summary>
     ///     Implements the maximum or complete-linkage clustering method, i.e., returning the maximum value of all pairwise

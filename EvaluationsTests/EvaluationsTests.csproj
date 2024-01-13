@@ -13,4 +13,9 @@
     <PackageReference Include="CsvHelper" Version="30.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\src\Alpaca.Integrations\Alpaca.Integrations.csproj" />
+    <ProjectReference Include="..\src\Alpaca\AlpacaAnalytics.csproj" />
+  </ItemGroup>
+
 </Project>

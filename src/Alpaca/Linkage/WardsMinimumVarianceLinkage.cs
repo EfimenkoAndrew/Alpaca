@@ -1,6 +1,7 @@
 ﻿using System;
+using AlpacaAnalytics.Clustering;
 
-namespace Alpaca.Linkage
+namespace AlpacaAnalytics.Linkage
 {
     /// <summary>
     ///     Implements Ward's minimum variance method, i.e., returns the total within-cluster variance, corresponding to a

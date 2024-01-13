@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Alpaca
+namespace AlpacaAnalytics.Clustering
 {
     /// <summary>
     ///     Represents a set of <typeparamref name="TInstance" /> elements arranged in a hierarchical form.
@@ -165,11 +165,11 @@ namespace Alpaca
         {
             return !(other is null) &&
                    (ReferenceEquals(this, other) ||
-                    (_hashCode == other._hashCode &&
+                    _hashCode == other._hashCode &&
                      Math.Abs(Dissimilarity - other.Dissimilarity) < MIN_DISSIMILARITY &&
-                     ((Parent1 != null && Parent2 != null &&
-                       Equals(Parent1, other.Parent1) && Equals(Parent2, other.Parent2)) ||
-                      _cluster.SequenceEqual(other._cluster))));
+                     (Parent1 != null && Parent2 != null &&
+                       Equals(Parent1, other.Parent1) && Equals(Parent2, other.Parent2) ||
+                      _cluster.SequenceEqual(other._cluster)));
         }
 
 
@@ -178,7 +178,7 @@ namespace Alpaca
         {
             return !(other is null) &&
                    (ReferenceEquals(this, other) ||
-                    (other.GetType() == GetType() && Equals((Cluster<TInstance>)other)));
+                    other.GetType() == GetType() && Equals((Cluster<TInstance>)other));
         }
 
         /// <inheritdoc />
@@ -227,7 +227,7 @@ namespace Alpaca
             unchecked
             {
                 var hashCode = Dissimilarity.GetHashCode();
-                foreach (var instance in this) hashCode += (hashCode * 397) ^ instance.GetHashCode();
+                foreach (var instance in this) hashCode += hashCode * 397 ^ instance.GetHashCode();
                 return hashCode;
             }
         }

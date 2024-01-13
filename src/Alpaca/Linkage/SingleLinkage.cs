@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
+using AlpacaAnalytics.Clustering;
 
-namespace Alpaca.Linkage
+namespace AlpacaAnalytics.Linkage
 {
     /// <summary>
     ///     Implements the minimum or single-linkage clustering method, i.e., returns the minimum value of all pairwise

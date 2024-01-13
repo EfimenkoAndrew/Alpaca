@@ -1,6 +1,7 @@
 ﻿using System;
+using AlpacaAnalytics.Clustering;
 
-namespace Alpaca.Linkage
+namespace AlpacaAnalytics.Linkage
 {
     /// <summary>
     ///     An interface for agglomeration (linkage) methods for computing distance between clusters to be used during

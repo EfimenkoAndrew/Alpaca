@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using AlpacaAnalytics.Clustering;
 
-namespace Alpaca.Evaluation.Internal
+namespace AlpacaAnalytics.Evaluation.Internal
 {
     /// <summary>
     ///     Implements the internal evaluation method in [1] that measures compactness and separation of clusters

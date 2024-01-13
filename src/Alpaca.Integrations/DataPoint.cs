@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using AlpacaAnalytics.Clustering;
 
 namespace Alpaca.Integrations;
 

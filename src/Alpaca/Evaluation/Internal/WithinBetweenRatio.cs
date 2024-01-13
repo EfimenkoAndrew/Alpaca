@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using AlpacaAnalytics.Clustering;
 
-namespace Alpaca.Evaluation.Internal
+namespace AlpacaAnalytics.Evaluation.Internal
 {
     /// <summary>
     ///     Implements the within-between ratio (WB) internal evaluation method in [1] measuring the ratio of the

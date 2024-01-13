@@ -1,4 +1,4 @@
-﻿namespace Alpaca
+﻿namespace AlpacaAnalytics.Clustering
 {
     /// <summary>
     ///     Represents an interface for metrics measuring the dissimilarity/distance between instances.

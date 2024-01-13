@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using AlpacaAnalytics.Clustering;
 
-namespace Alpaca.Evaluation.Internal
+namespace AlpacaAnalytics.Evaluation.Internal
 {
     /// <summary>
     ///     Implements the Xu-index internal evaluation method proposed in [1] measuring the compactness of clusters given some

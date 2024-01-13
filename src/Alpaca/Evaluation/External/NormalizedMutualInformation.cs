@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AlpacaAnalytics.Clustering;
 
-namespace Alpaca.Evaluation.External
+namespace AlpacaAnalytics.Evaluation.External
 {
     /// <summary>
     ///     Evaluates the given partition according to the normalized mutual information criterion that measures the amount of

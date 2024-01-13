@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Alpaca.Linkage;
+using AlpacaAnalytics.Clustering;
+using AlpacaAnalytics.Linkage;
 
-namespace Alpaca.Evaluation.External
+namespace AlpacaAnalytics.Evaluation.External
 {
     /// <summary>
     ///     Represents an interface for external criteria to evaluate how well the result of

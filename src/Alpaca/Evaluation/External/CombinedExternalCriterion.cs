@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AlpacaAnalytics.Clustering;
 
-namespace Alpaca.Evaluation.External
+namespace AlpacaAnalytics.Evaluation.External
 {
     /// <summary>
     ///     Implements an external clustering evaluation criterion as a combination (weighted average) of other

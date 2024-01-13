@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using AlpacaAnalytics.Clustering;
 
-namespace Alpaca.Evaluation.Internal
+namespace AlpacaAnalytics.Evaluation.Internal
 {
     /// <summary>
     ///     Implements the I-index internal evaluation method [1] that uses the ratio of the separation and compactness of a

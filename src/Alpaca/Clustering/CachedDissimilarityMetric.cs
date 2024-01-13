@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Alpaca.Linkage;
+using AlpacaAnalytics.Linkage;
 
-namespace Alpaca
+namespace AlpacaAnalytics.Clustering
 {
     /// <summary>
     ///     Represents a cache to store dissimilarities between all instances of a known set, as dictated by a base
@@ -46,11 +46,11 @@ namespace Alpaca
             // initializes cache with distances between all instances
             _dissimilarities = new double[instances.Length][];
             for (var i = 0; i < allInstances.Count; i++)
-            for (var j = i; j < allInstances.Count; j++)
-            {
-                if (i == 0) _dissimilarities[j] = new double[instances.Length];
-                Store(i, j, instances);
-            }
+                for (var j = i; j < allInstances.Count; j++)
+                {
+                    if (i == 0) _dissimilarities[j] = new double[instances.Length];
+                    Store(i, j, instances);
+                }
         }
 
 

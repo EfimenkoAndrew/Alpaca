@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Alpaca.Linkage;
+using AlpacaAnalytics.Linkage;
 
-namespace Alpaca
+namespace AlpacaAnalytics.Clustering
 {
     /// <summary>
     ///     Implements the agglomerative nesting clustering algorithm (program AGNES) in [1].

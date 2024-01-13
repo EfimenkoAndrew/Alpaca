@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using AlpacaAnalytics.Clustering;
 
-namespace Alpaca.Evaluation.External
+namespace AlpacaAnalytics.Evaluation.External
 {
     /// <summary>
     ///     Evaluates the given partition according to the purity criterion, where each cluster is assigned to its most

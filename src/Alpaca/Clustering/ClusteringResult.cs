@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Alpaca
+namespace AlpacaAnalytics.Clustering
 {
     /// <summary>
     ///     Represents the result of a clustering algorithm, consisting in the sequence of <see cref="ClusterSet{TInstance}" />

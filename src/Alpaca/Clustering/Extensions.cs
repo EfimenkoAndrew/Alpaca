@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Alpaca.Evaluation.External;
-using Alpaca.Evaluation.Internal;
+using AlpacaAnalytics.Evaluation.External;
+using AlpacaAnalytics.Evaluation.Internal;
 
-namespace Alpaca
+namespace AlpacaAnalytics.Clustering
 {
     /// <summary>
     ///     Contains several extension utility methods.
@@ -24,7 +24,7 @@ namespace Alpaca
             this ClusteringResult<TInstance> clustering, IInternalEvaluationCriterion<TInstance> criterion)
             where TInstance : IComparable<TInstance>
         {
-            return EvaluateClustering(clustering, criterion, (uint)Math.Sqrt(clustering.Count / 2d));
+            return clustering.EvaluateClustering(criterion, (uint)Math.Sqrt(clustering.Count / 2d));
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Alpaca
             this ClusteringResult<TInstance> clustering, IExternalEvaluationCriterion<TInstance, TClass> criterion,
             IDictionary<TInstance, TClass> instanceClasses) where TInstance : IComparable<TInstance>
         {
-            return EvaluateClustering(clustering, criterion, instanceClasses, (uint)Math.Sqrt(clustering.Count / 2d));
+            return clustering.EvaluateClustering(criterion, instanceClasses, (uint)Math.Sqrt(clustering.Count / 2d));
         }
 
         /// <summary>
@@ -144,12 +144,12 @@ namespace Alpaca
             var sumDists = new double[cluster.Count];
             var clusterList = cluster.ToList();
             for (var i = 0; i < clusterList.Count; i++)
-            for (var j = i + 1; j < clusterList.Count; j++)
-            {
-                var dist = metric.Calculate(clusterList[i], clusterList[j]);
-                sumDists[i] += dist;
-                sumDists[j] += dist;
-            }
+                for (var j = i + 1; j < clusterList.Count; j++)
+                {
+                    var dist = metric.Calculate(clusterList[i], clusterList[j]);
+                    sumDists[i] += dist;
+                    sumDists[j] += dist;
+                }
 
             // selects elem index minimizing the mean distance (the medoid)
             var minSumDist = double.MaxValue;

@@ -1,4 +1,4 @@
-﻿namespace Alpaca
+﻿namespace AlpacaAnalytics.Clustering
 {
     /// <summary>
     ///     A utility class containing combinatorics methods.
