@@ -16,10 +16,10 @@ var parsed = data.Select(x => new[] { x.x, x.y }).ToArray();
 
 KMeans km = new KMeans();
 km.Fit(parsed, 10);
-CalinskiHarabaszIndex ch = new CalinskiHarabaszIndex(); // higher better
-DaviesBouldinIndex db = new DaviesBouldinIndex(); // 0 1 (1 - better)
-CIndexCalculator cIndex = new CIndexCalculator(); // 0 1 (0 better)
-SilhouetteIndex sIndex = new SilhouetteIndex(); // -1 1 (1 better)
+CalinskiHarabaszIndex ch = new CalinskiHarabaszIndex(); 
+DaviesBouldinIndex db = new DaviesBouldinIndex(); 
+CIndexCalculatorIndex cIndex = new CIndexCalculatorIndex(); 
+SilhouetteIndex sIndex = new SilhouetteIndex();
 
 var chValuation = ch.Calculate(km.Centroids, parsed, km.ClusterLabels);
 Console.WriteLine(chValuation);

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AlpacaAnalytics.Indexes.Internal
 {
-    public class Dunn
+    public class DunnIndex
     {
         public double Calculate(double[][] clustersCentroids, double[][] allData, int[] allDataClusterIndices)
         {

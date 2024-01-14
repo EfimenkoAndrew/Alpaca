@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AlpacaAnalytics.Indexes.Internal;
 
-public class CIndexCalculator
+public class CIndexCalculatorIndex
 {
     public double Calculate(double[][] allData, int[] clusterIndices)
     {
