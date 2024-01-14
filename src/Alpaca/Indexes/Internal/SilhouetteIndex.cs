@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AlpacaAnalytics.Indexes.Internal;
+namespace UnicornAnalytics.Indexes.Internal;
 
 public class SilhouetteIndex
 {

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace AlpacaAnalytics.Indexes.Internal
+namespace UnicornAnalytics.Indexes.Internal
 {
     public class DunnIndex
     {

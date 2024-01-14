@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
-namespace AlpacaAnalytics.Clustering
+namespace UnicornAnalytics.Clustering
 {
-    using System.Linq;
-    using System;
-
     public class FuzzyCMeans
     {
         private int numClusters;

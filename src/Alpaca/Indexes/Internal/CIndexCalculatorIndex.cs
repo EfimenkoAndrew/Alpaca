@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AlpacaAnalytics.Indexes.Internal;
+namespace UnicornAnalytics.Indexes.Internal;
 
 public class CIndexCalculatorIndex
 {
