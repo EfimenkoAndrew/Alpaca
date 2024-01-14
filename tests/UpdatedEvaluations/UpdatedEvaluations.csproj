@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Alpaca\AlpacaAnalytics.csproj" />
+    <ProjectReference Include="..\..\src\Alpaca\UnicornAnalytics.csproj" />
   </ItemGroup>
 
 </Project>

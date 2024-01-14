@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A83B5607-A00
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{66D5911C-53D7-413C-9106-5CC1A7C4E149}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlpacaAnalytics", "src\Alpaca\AlpacaAnalytics.csproj", "{0E2CEF8D-5B59-478C-9468-BD155DFEE994}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnicornAnalytics", "src\Alpaca\UnicornAnalytics.csproj", "{0E2CEF8D-5B59-478C-9468-BD155DFEE994}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdatedEvaluations", "tests\UpdatedEvaluations\UpdatedEvaluations.csproj", "{E3815693-7861-46F4-B391-444CBE550C15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpdatedEvaluations", "tests\UpdatedEvaluations\UpdatedEvaluations.csproj", "{E3815693-7861-46F4-B391-444CBE550C15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

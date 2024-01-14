@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace AlpacaAnalytics.Clustering;
+namespace UnicornAnalytics.Clustering;
 
 public class KMeans
 {
