@@ -1,3 +1,0 @@
-User0 => C++ Linux
-User1 => C# .NET
-User2 => Java Javascript
