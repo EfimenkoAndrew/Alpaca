@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace AlpacaAnalytics.Indexes.Internal;
+namespace UnicornAnalytics.Indexes.Internal;
 
 public class CalinskiHarabaszIndex
 {

@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
-using AlpacaAnalytics.Clustering;
-using AlpacaAnalytics.Indexes.Internal;
 using CsvHelper;
+using UnicornAnalytics.Clustering;
+using UnicornAnalytics.Indexes.Internal;
 using UpdatedEvaluations;
 
 var path = @"C:\Work\personal\Diploma\datasets\data+y\4.txt";

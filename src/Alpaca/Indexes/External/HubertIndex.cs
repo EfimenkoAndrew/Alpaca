@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace AlpacaAnalytics.Indexes.External
+namespace UnicornAnalytics.Indexes.External
 {
     public class HubertIndex
     {
