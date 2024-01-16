@@ -1,64 +1,67 @@
 ﻿using System;
+using System.Linq;
 
 namespace UnicornAnalytics.Indexes.Internal;
 
 public class SilhouetteIndex
 {
-    public double Calculate(double[][] allData, int[] clusterIndices)
+    public double Calculate(double[][] data, int[] labels)
     {
-        double silhouetteSum = 0.0;
-        int pointCount = allData.Length;
+        int n = data.Length;
 
-        for (int i = 0; i < pointCount; i++)
+        double totalScore = 0.0;
+        for (int i = 0; i < n; i++)
         {
-            double averageDistanceWithinCluster = CalculateAverageDistance(i, allData, clusterIndices, clusterIndices[i]);
-            double averageDistanceToNextCluster = double.MaxValue;
+            double ai = AverageDistance(data[i], labels[i], data, labels);
+            double bi = double.MaxValue;
 
-            for (int j = 0; j < pointCount; j++)
+            foreach (int label in labels.Distinct())
             {
-                if (clusterIndices[j] != clusterIndices[i])
+                if (label != labels[i])
                 {
-                    double distanceToOtherCluster = CalculateAverageDistance(i, allData, clusterIndices, clusterIndices[j]);
-                    if (distanceToOtherCluster < averageDistanceToNextCluster)
-                    {
-                        averageDistanceToNextCluster = distanceToOtherCluster;
-                    }
+                    double b = AverageDistance(data[i], label, data, labels);
+                    bi = Math.Min(bi, b);
                 }
             }
 
-            double silhouette = (averageDistanceToNextCluster - averageDistanceWithinCluster) / Math.Max(averageDistanceWithinCluster, averageDistanceToNextCluster);
-            silhouetteSum += silhouette;
+            double score = (bi - ai) / Math.Max(ai, bi);
+            totalScore += score;
         }
 
-        return silhouetteSum / pointCount;
+        return totalScore / n;
     }
 
-    private double CalculateAverageDistance(int index, double[][] allData, int[] clusterIndices, int clusterIndex)
+    private double AverageDistance(double[] point, int label, double[][] data, int[] labels)
     {
-        double sum = 0.0;
+        double totalDistance = 0.0;
         int count = 0;
 
-        for (int i = 0; i < allData.Length; i++)
+        for (int i = 0; i < data.Length; i++)
         {
-            if (clusterIndices[i] == clusterIndex)
+            if (labels[i] == label)
             {
-                sum += EuclideanDistance(allData[index], allData[i]);
+                totalDistance += EuclideanDistance(point, data[i]);
                 count++;
             }
         }
 
-        return sum / count;
+        return totalDistance / count;
     }
 
-    private double EuclideanDistance(double[] x, double[] y)
+    private double EuclideanDistance(double[] a, double[] b)
     {
-        double distance = 0.0;
-
-        for (int i = 0; i < x.Length; i++)
+        if (a.Length != b.Length)
         {
-            distance += Math.Pow(x[i] - y[i], 2);
+            throw new ArgumentException("The two points must have the same dimensions.");
         }
 
-        return Math.Sqrt(distance);
+        double sum = 0.0;
+        for (int i = 0; i < a.Length; i++)
+        {
+            double diff = a[i] - b[i];
+            sum += diff * diff;
+        }
+
+        return Math.Sqrt(sum);
     }
 }
