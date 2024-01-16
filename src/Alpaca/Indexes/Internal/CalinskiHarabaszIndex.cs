@@ -2,59 +2,61 @@
 using System.Linq;
 
 namespace UnicornAnalytics.Indexes.Internal;
-
 public class CalinskiHarabaszIndex
 {
-    public double Calculate(double[][] clustersCentroids, double[][] allData, int[] allDataClusterIndices)
+    public double Calculate(double[][] data, int[] clusterTags, double[][] centroids)
     {
-        double betweenCluster = BetweenCluster(clustersCentroids, allData);
-        double withinCluster = WithinCluster(clustersCentroids, allData, allDataClusterIndices);
-        int n = allData.Length;
-        int k = clustersCentroids.Length;
-        double score = betweenCluster / withinCluster / ((n - k) / (double)(k - 1));
-        return score;
+        int numberOfClusters = centroids.Length;
+        int numberOfDataPoints = data.Length;
+        double betweenClusterVariance = ComputeBetweenClusterVariance(data, centroids, clusterTags);
+        double withinClusterVariance = ComputeWithinClusterVariance(data, centroids, clusterTags);
+
+        if (numberOfClusters == 1 || withinClusterVariance == 0)
+        {
+            return 0;
+        }
+        return (betweenClusterVariance / withinClusterVariance) * (numberOfDataPoints - numberOfClusters) / (numberOfClusters - 1);
     }
 
-    private double BetweenCluster(double[][] clustersCentroids, double[][] allData)
+    private double ComputeWithinClusterVariance(double[][] data, double[][] centroids, int[] clusterTags)
     {
-        double[] dataCentroid = new double[clustersCentroids[0].Length];
-        for (int i = 0; i < clustersCentroids[0].Length; i++)
+        double variance = 0.0;
+        for (int i = 0; i < data.Length; i++)
         {
-            double elementMean = allData.Average(data => data[i]);
-            dataCentroid[i] = elementMean;
+            double[] dataPoint = data[i];
+            double[] centroid = centroids[clusterTags[i]];
+            variance += EuclideanDistanceSquared(dataPoint, centroid);
         }
-
-        double sum = 0;
-        for (int i = 0; i < clustersCentroids.Length; i++)
-        {
-            int clusterSize = allData.Length;
-            sum += clusterSize * Math.Pow(EuclideanDistance(clustersCentroids[i], dataCentroid), 2);
-        }
-
-        return sum;
+        return variance;
     }
 
-    private double WithinCluster(double[][] clustersCentroids, double[][] allData, int[] allDataClusterIndices)
+    private double ComputeBetweenClusterVariance(double[][] data, double[][] centroids, int[] clusterTags)
     {
-        double sum = 0;
-        for (int i = 0; i < clustersCentroids.Length; i++)
+        double[] overallCentroid = CalculateOverallCentroid(centroids);
+        double variance = 0.0;
+        int[] clusterSizes = new int[centroids.Length];
+
+        for (int i = 0; i < clusterTags.Length; i++)
+            clusterSizes[clusterTags[i]]++;
+
+        for (int i = 0; i < centroids.Length; i++)
         {
-            for (int j = 0; j < allDataClusterIndices.Length; j++)
-            {
-                if (allDataClusterIndices[j] == i)
-                {
-                    sum += Math.Pow(EuclideanDistance(allData[j], clustersCentroids[i]), 2);
-                }
-            }
+            variance += clusterSizes[i] * EuclideanDistanceSquared(centroids[i], overallCentroid);
         }
-        return sum;
+
+        return variance;
     }
 
-    private double EuclideanDistance(double[] x, double[] y)
+    private double EuclideanDistanceSquared(double[] pointA, double[] pointB)
     {
-        double distance = 0;
-        for (int i = 0; i < x.Length; i++)
-            distance += Math.Pow(x[i] - y[i], 2);
-        return Math.Sqrt(distance);
+        return pointA.Zip(pointB, (a, b) => (a - b) * (a - b)).Sum();
+    }
+
+    private double[] CalculateOverallCentroid(double[][] centroids)
+    {
+        return Enumerable.Range(0, centroids[0].Length)
+            .Select(i => centroids.Average(point => point[i]))
+            .ToArray();
     }
 }
+

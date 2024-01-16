@@ -6,6 +6,11 @@ namespace UnicornAnalytics.Indexes.External
     {
         public double Calculate(int[] labelsTrue, int[] labelsPred)
         {
+            if (labelsTrue == null || labelsPred == null || labelsTrue.Length == 0 || labelsPred.Length == 0)
+            {
+                throw new ArgumentException("Input vectors should not be null or of zero length");
+            }
+
             if (labelsTrue.Length != labelsPred.Length)
             {
                 throw new ArgumentException("Input vectors should have the same length");
