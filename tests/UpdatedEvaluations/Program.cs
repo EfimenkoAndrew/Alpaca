@@ -6,7 +6,7 @@ using UnicornAnalytics.Indexes.External;
 using UnicornAnalytics.Indexes.Internal;
 using UpdatedEvaluations;
 
-var name = "4";
+var name = "3";
 var path = $@"C:\Work\personal\Diploma\datasets\data+y\{name}.txt";
 using var streamReader = new StreamReader(path);
 using var csv = new CsvReader(streamReader, new CsvConfiguration(CultureInfo.InvariantCulture) { HasHeaderRecord = false});
@@ -17,9 +17,9 @@ var points = parsed.Select(x => new Point(x)).ToArray();
 var sim = SimilarityMatrix.SparseSimilarityMatrix(points);
 
 KMeans kMeans = new KMeans();
-kMeans.Fit(parsed, 3);
+kMeans.Fit(parsed, 2);
 
-FuzzyCMeans fuzzyCMeans = new FuzzyCMeans(3, 10.0);
+FuzzyCMeans fuzzyCMeans = new FuzzyCMeans(2, 10.0);
 fuzzyCMeans.Fit(parsed, 100);
 
 var meanShift = new MeanShift(75);
@@ -38,7 +38,6 @@ CalinskiHarabaszIndex ch = new CalinskiHarabaszIndex();
 DaviesBouldinIndex db = new DaviesBouldinIndex(); 
 CIndexCalculatorIndex cIndex = new CIndexCalculatorIndex(); 
 SilhouetteIndex sIndex = new SilhouetteIndex();
-HubertIndex hubertIndex = new HubertIndex();
 
 RandIndex randIndex = new RandIndex();
 Dictionary<string, double> indexValidations = new();
@@ -62,14 +61,13 @@ writer_r.WriteLine($"kMeans_fuzzyCMeans: {kMeans_fuzzyCMeans}");
 writer_r.Close();
 
 
-
 void ValidateIndexes(double[][] allData, int[] clusters, double[][] centroids)
 {
     indexValidations.Clear();
-    var chValuation = ch.Calculate(allData, clusters, centroids);
+    var chValuation = ch.Calculate(allData, clusters);
     indexValidations.Add("CalinskiHarabaszIndex", chValuation);
 
-    var dbValuation = db.Calculate(centroids, allData, clusters);
+    var dbValuation = db.Calculate(allData, clusters);
     indexValidations.Add("DaviesBouldinIndex", dbValuation);
 
     var cValuation = cIndex.Calculate(allData, clusters);
@@ -77,9 +75,6 @@ void ValidateIndexes(double[][] allData, int[] clusters, double[][] centroids)
 
     var sValuation = sIndex.Calculate(allData, clusters);
     indexValidations.Add("SilhouetteIndex", sValuation);
-
-    var hValuation = hubertIndex.Calculate(allData, clusters);
-    indexValidations.Add("HubertIndex", hValuation);
 }
 
 void WriteResultsToFile(string path, double[][] data, int[] clusters)

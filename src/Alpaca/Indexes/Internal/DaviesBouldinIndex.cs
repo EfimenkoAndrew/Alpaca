@@ -5,44 +5,64 @@ namespace UnicornAnalytics.Indexes.Internal;
 
 public class DaviesBouldinIndex
 {
-    public double Calculate(double[][] clustersCentroids, double[][] allData, int[] allDataClusterIndices)
+    private double GetCentroid(double[] cluster)
     {
-        int k = clustersCentroids.Length;
-        double[] S = new double[k];
+        return cluster.Average();
+    }
 
-        for (int i = 0; i < k; i++)
+    private double GetAvgIntraClusterDistance(double[] cluster, double centroid)
+    {
+        double sum = 0;
+        foreach (double point in cluster)
         {
-            S[i] = allData.Where((t, j) => allDataClusterIndices[j] == i).Average(t => EuclideanDistance(t, clustersCentroids[i]));
+            sum += Math.Abs(point - centroid);
+        }
+        return sum / cluster.Length;
+    }
+
+    private double GetInterClusterDistance(double centroid1, double centroid2)
+    {
+        return Math.Abs(centroid1 - centroid2);
+    }
+
+    public double Calculate(double[][] data, int[] clusterMarkers)
+    {
+        double DBIndex = 0;
+        int numClusters = clusterMarkers.Distinct().Count();
+
+        double[] intraDistances = new double[numClusters];
+        double[] centroids = new double[numClusters];
+
+        for (int i = 0; i < numClusters; i++)
+        {
+            var indices = Enumerable.Range(0, clusterMarkers.Length)
+                .Where(j => clusterMarkers[j] == i)
+                .ToArray();
+            double[] cluster = indices.SelectMany(index => data[index]).ToArray();
+            double centroid = GetCentroid(cluster);
+            centroids[i] = centroid;
+            intraDistances[i] = GetAvgIntraClusterDistance(cluster, centroid);
         }
 
-        double DBIndex = 0.0;
-        for (int i = 0; i < k; i++)
+        double maxRatio = 0;
+        for (int i = 0; i < numClusters; i++)
         {
-            double maxRatio = 0.0;
-            for (int j = 0; j < k; j++)
+            for (int j = 0; j < numClusters; j++)
             {
-                if (j != i)
+                if (i != j)
                 {
-                    double distance = EuclideanDistance(clustersCentroids[i], clustersCentroids[j]);
-                    double ratio = (S[i] + S[j]) / distance;
+                    double interClusterDistance = GetInterClusterDistance(centroids[i], centroids[j]);
+                    double ratio = (intraDistances[i] + intraDistances[j]) / interClusterDistance;
                     if (ratio > maxRatio)
                     {
                         maxRatio = ratio;
                     }
                 }
             }
-            DBIndex += maxRatio;
         }
-        DBIndex /= k;
+
+        DBIndex = maxRatio;
 
         return DBIndex;
-    }
-
-    private double EuclideanDistance(double[] x, double[] y)
-    {
-        double distance = 0;
-        for (int i = 0; i < x.Length; i++)
-            distance += Math.Pow(x[i] - y[i], 2);
-        return Math.Sqrt(distance);
     }
 }
