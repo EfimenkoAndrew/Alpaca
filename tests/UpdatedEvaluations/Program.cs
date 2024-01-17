@@ -34,10 +34,24 @@ var t = ClusterUtility.GroupClusters(points, clusters, centers_index);
 var afpCentroids = points.Where((element, index) => centers_index.Contains(index)).Select(x=>x.Data).ToArray();
 var afpClusterLabels = t.Select(x => x.Item2).ToArray();
 
-CalinskiHarabaszIndex ch = new CalinskiHarabaszIndex(); 
+CalinskiHarabaszIndex ch = new CalinskiHarabaszIndex();
 DaviesBouldinIndex db = new DaviesBouldinIndex(); 
 CIndexCalculatorIndex cIndex = new CIndexCalculatorIndex(); 
 SilhouetteIndex sIndex = new SilhouetteIndex();
+
+var dat = new double[][]
+{
+    [1d,1d],
+    [2d,3d],
+    [3d,2d],
+    [2d,2d],
+    [6d,5d],
+    [7d,4d],
+    [7d,5d],
+    [8d,4d],
+};
+var clasts = new int[] { 0, 1, 1, 1, 2, 2, 2, 2 };
+var d = sIndex.Calculate(dat, clasts);
 
 RandIndex randIndex = new RandIndex();
 Dictionary<string, double> indexValidations = new();
