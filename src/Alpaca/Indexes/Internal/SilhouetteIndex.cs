@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace UnicornAnalytics.Indexes.Internal;
@@ -7,61 +8,47 @@ public class SilhouetteIndex
 {
     public double Calculate(double[][] data, int[] labels)
     {
-        int n = data.Length;
-
-        double totalScore = 0.0;
-        for (int i = 0; i < n; i++)
-        {
-            double ai = AverageDistance(data[i], labels[i], data, labels);
-            double bi = double.MaxValue;
-
-            foreach (int label in labels.Distinct())
-            {
-                if (label != labels[i])
-                {
-                    double b = AverageDistance(data[i], label, data, labels);
-                    bi = Math.Min(bi, b);
-                }
-            }
-
-            double score = (bi - ai) / Math.Max(ai, bi);
-            totalScore += score;
-        }
-
-        return totalScore / n;
-    }
-
-    private double AverageDistance(double[] point, int label, double[][] data, int[] labels)
-    {
-        double totalDistance = 0.0;
-        int count = 0;
+        var silhouetteScores = new List<double>();
 
         for (int i = 0; i < data.Length; i++)
         {
-            if (labels[i] == label)
+            var otherIndicesInCluster = Enumerable.Range(0, data.Length)
+                .Where(idx => idx != i && labels[idx] == labels[i])
+                .ToList();
+
+            if (otherIndicesInCluster.Count == 0)
             {
-                totalDistance += EuclideanDistance(point, data[i]);
-                count++;
+                // If the cluster contains only one data point, the silhouette score is 0.
+                silhouetteScores.Add(0);
+                continue;
             }
+
+            double a = AverageDistance(data[i], otherIndicesInCluster.Select(idx => data[idx]));
+            double minB = labels.Where((label, idx) => label != labels[i])
+                .Distinct()
+                .Select(label => AverageDistance(data[i], GetIndicesWithLabel(labels, label).Select(idx => data[idx])))
+                .Min();
+
+            silhouetteScores.Add((minB - a) / Math.Max(a, minB));
         }
 
-        return totalDistance / count;
+        return silhouetteScores.Average();
     }
 
-    private double EuclideanDistance(double[] a, double[] b)
+    private double AverageDistance(double[] point, IEnumerable<double[]> otherPoints)
     {
-        if (a.Length != b.Length)
-        {
-            throw new ArgumentException("The two points must have the same dimensions.");
-        }
+        return otherPoints.Select(p => Distance(point, p)).Average();
+    }
 
-        double sum = 0.0;
-        for (int i = 0; i < a.Length; i++)
-        {
-            double diff = a[i] - b[i];
-            sum += diff * diff;
-        }
+    private double Distance(double[] pointA, double[] pointB)
+    {
+        // Euclidean distance (make sure the dimensions of pointA and pointB match)
+        return Math.Sqrt(pointA.Zip(pointB, (a, b) => Math.Pow(a - b, 2)).Sum());
+    }
 
-        return Math.Sqrt(sum);
+    private IEnumerable<int> GetIndicesWithLabel(int[] labels, int label)
+    {
+        return Enumerable.Range(0, labels.Length).Where(idx => labels[idx] == label);
     }
 }
+
