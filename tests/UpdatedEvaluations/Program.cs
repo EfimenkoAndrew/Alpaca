@@ -36,7 +36,7 @@ var afpClusterLabels = t.Select(x => x.Item2).ToArray();
 
 CalinskiHarabaszIndex ch = new CalinskiHarabaszIndex();
 DaviesBouldinIndex db = new DaviesBouldinIndex(); 
-CIndexCalculatorIndex cIndex = new CIndexCalculatorIndex(); 
+CIndexIndex cIndex = new CIndexIndex(); 
 SilhouetteIndex sIndex = new SilhouetteIndex();
 
 var dat = new double[][]
@@ -85,7 +85,7 @@ void ValidateIndexes(double[][] allData, int[] clusters, double[][] centroids)
     indexValidations.Add("DaviesBouldinIndex", dbValuation);
 
     var cValuation = cIndex.Calculate(allData, clusters);
-    indexValidations.Add("CIndexCalculatorIndex", cValuation);
+    indexValidations.Add("CIndexIndex", cValuation);
 
     var sValuation = sIndex.Calculate(allData, clusters);
     indexValidations.Add("SilhouetteIndex", sValuation);

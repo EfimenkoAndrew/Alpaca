@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace UnicornAnalytics.Indexes.Internal;
 
-public class CIndexCalculatorIndex
+public class CIndexIndex
 {
     public double Calculate(double[][] allData, int[] clusterIndices)
     {
